@@ -1,0 +1,63 @@
+@media only screen and (max-width: 430px) {
+  navbar {
+    padding: var(--m);
+  }
+
+  navbar p {
+    display: none;
+  }
+
+  navbar logotype t {
+    display: none;
+  }
+
+  hello-message {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding-left: var(--m);
+    padding-right: var(--m);
+
+    row-gap: var(--xxl);
+  }
+
+  summary {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding-left: var(--m);
+    padding-right: var(--m);
+
+    font-size: 32pt;
+    font-weight: 500;
+    line-height: 26pt;
+  }
+
+  catalog-title {
+    display: flex;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding-left: var(--m);
+    padding-right: var(--m);
+
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  catalog {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    display: grid;
+    grid-template-columns: 100%;
+    column-gap: var(--m);
+    row-gap: var(--m);
+
+    width: 100%;
+    max-width: 768px;
+    padding-left: var(--m);
+    padding-right: var(--m);
+
+    box-sizing: border-box;
+
+    margin-top: var(--s);
+  }
+}
