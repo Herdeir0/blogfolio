@@ -1,3 +1,5 @@
+/* __ Variables ______________________________________________________________________________________________________________________ */
+
 :root {
   /* Colors */
   --primary: #0000ff;
@@ -19,15 +21,21 @@
   --xxl: 48px;
 
   /* Text Sizes */
-  --text-caption: 12pt;
-  --text: 20pt;
-  --text-h3: 24pt;
-  --text-h2: 32pt;
-  --text-h1: 48pt;
+  --text-caption: 12px;
+  --text: 20px;
+  --text-h3: 24px;
+  --text-h2: 32px;
+  --text-h1: 48px;
 
   /* Typography */
   --anybody: "Anybody", sans-serif;
   --playfair: "Playfair", serif;
+}
+
+/* __ Global ______________________________________________________________________________________________________________________ */
+
+* {
+  box-sizing: content-box;
 }
 
 caption {
@@ -71,8 +79,13 @@ h1 {
 
 a {
   text-decoration: none;
-  text-decoration-line: 6%;
-  text-underline-offset: 4px;
+  color: var(--primary);
+}
+
+s {
+  text-decoration: underline;
+  text-decoration-line: 2px;
+  text-underline-offset: 2px;
   color: var(--primary);
 }
 
@@ -124,7 +137,24 @@ body {
   overflow-x: hidden;
 }
 
-/* ________________________________________________________________________________________________________________________ */
+content {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: calc(33% - 8px) calc(33% - 8px) calc(33% - 8px);
+  column-gap: var(--m);
+
+  width: 100%;
+  max-width: 768px;
+
+  margin: 140px auto 0px;
+
+  font-family: var(--playfair);
+
+  box-sizing: content-box;
+}
+
+/* __ Navbar ______________________________________________________________________________________________________________________ */
 
 navbar {
   position: fixed;
@@ -133,11 +163,11 @@ navbar {
   justify-content: space-between;
 
   z-index: 1000;
+  box-sizing: border-box;
 
   width: 100%;
   max-width: 1440px;
   height: auto;
-  box-sizing: border-box;
 
   top: 0px;
   left: 0px;
@@ -150,26 +180,23 @@ navbar {
 }
 
 logotype {
-  display: block;
+  display: flex;
 
   width: auto;
-  height: auto;
-
+  height: 32px;
   align-items: center;
 
   margin: auto 0px;
 
   font-family: var(--anybody);
-  font-optical-sizing: auto;
-
   font-size: 24px;
   font-weight: 500;
 
-  line-height: 0px;
-
   color: var(--primary);
+}
 
-  align-items: center;
+logotype t {
+  line-height: 24px;
 }
 
 logotype img {
@@ -189,29 +216,17 @@ menu {
 
   margin: auto 0px;
 
-  font-size: var(--xl);
+  font-size: var(--l);
+  font-weight: 500;
 
   padding-inline-start: 0%;
 }
 
-content {
-  position: relative;
-
-  display: grid;
-  grid-template-columns: calc(33% - 8px) calc(33% - 8px) calc(33% - 8px);
-  column-gap: var(--m);
-
-  width: 100vw;
-  max-width: 768px;
-
-  margin: 140px auto 0px;
-
-  font-family: var(--playfair);
-
-  box-sizing: content-box;
+menu button {
+  margin: auto 0px;
 }
 
-/* __________________________________________________________________________________________________________________________________ */
+/* __ Hello Message ________________________________________________________________________________________________________________________________ */
 
 hello-message {
   grid-column-start: 1;
@@ -220,6 +235,11 @@ hello-message {
   padding-right: var(--xs);
 
   row-gap: var(--xxl);
+
+  font-family: var(--anybody);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
 }
 
 summary {
@@ -228,10 +248,12 @@ summary {
   padding-left: var(--xs);
   padding-right: var(--xs);
 
-  font-size: 32pt;
+  font-size: 32px;
   font-weight: 500;
-  line-height: 26pt;
+  line-height: 40px;
 }
+
+/* __ Catalog ________________________________________________________________________________________________________________________________ */
 
 catalog-title {
   display: flex;
@@ -253,7 +275,7 @@ catalog {
   column-gap: var(--m);
   row-gap: var(--xl);
 
-  width: 100vw;
+  width: 100%;
   max-width: 768px;
 
   margin-top: var(--s);
@@ -267,14 +289,27 @@ catalog-item {
   row-gap: var(--xs);
 }
 
+a catalog-item {
+  text-decoration: none;
+}
+
+catalog-item:hover img {
+  background-size: 80%;
+}
+
 catalog-item img {
-  width: 100%;
+  background-size: 110%;
+  background-position: center;
+  background-repeat: repeat;
+  width: auto;
+  height: 150px;
   border-radius: var(--xs);
+  transition: 160ms ease-out background-size;
 }
 
 catalog-item-title {
   font-family: var(--anybody);
-  font-size: 16pt;
+  font-size: 20px;
   font-weight: 500;
   line-height: 140%;
 }
@@ -293,13 +328,16 @@ catalog-item-tag {
   text-decoration: none;
   font-family: var(--anybody);
   font-weight: 500;
-  padding: var(--xs) var(--m);
+  padding: var(--xs) var(--s) calc(var(--xs) - 3px) var(--s);
 
-  border: #0000ff dashed 2px;
+  color: #0000ff;
+  border: #0000ff dashed 1px;
   border-radius: var(--xs);
+
+  border-radius: 4px;
 }
 
-/* __________________________________________________________________________________________________________________________________ */
+/* __ Article ________________________________________________________________________________________________________________________________ */
 
 article-header {
   display: flex;

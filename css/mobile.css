@@ -1,6 +1,13 @@
 @media only screen and (max-width: 470px) {
+  html {
+    overflow-x: scroll;
+  }
+
   navbar {
     padding: var(--s);
+    width: 100%;
+
+    box-sizing: border-box;
   }
 
   navbar logotype t {
@@ -22,7 +29,7 @@
     padding-left: var(--m);
     padding-right: var(--m);
 
-    font-size: 32pt;
+    font-size: 20pt;
     font-weight: 500;
     line-height: 26pt;
   }
@@ -45,16 +52,21 @@
     display: grid;
     grid-template-columns: 100%;
     column-gap: var(--m);
-    row-gap: var(--m);
+    row-gap: var(--xxl);
 
     width: 100%;
     max-width: 768px;
-    padding-left: var(--m);
-    padding-right: var(--m);
 
     box-sizing: border-box;
 
     margin-top: var(--s);
+  }
+
+  catalog-item {
+    padding-left: var(--m);
+    padding-right: var(--m);
+
+    box-sizing: border-box;
   }
 
   article-header {
@@ -65,9 +77,9 @@
     flex-direction: column;
     row-gap: var(--m);
 
-    width: 100%;
+    width: calc(100% - var(--xs));
     height: auto;
-    padding: 0px var(--xs);
+    padding: 0px var(--m);
 
     box-sizing: border-box;
   }
@@ -102,7 +114,7 @@
 
     font-family: var(--anybody);
     font-weight: 500;
-    padding: var(--xs) var(--m);
+    padding: var(--xs) var(--s) var(--xxs);
 
     border: #0000ff dashed 2px;
     border-radius: var(--xs);
@@ -115,8 +127,11 @@
     grid-column-end: 4;
 
     margin-top: var(--m);
+    box-sizing: border-box;
 
-    padding: 0px var(--xs);
+    width: calc(100% - var(--xs));
+
+    padding: 0px var(--m);
 
     font-family: var(--anybody);
     font-weight: 700;
@@ -129,8 +144,11 @@
 
     grid-column-start: 1;
     grid-column-end: 4;
+    box-sizing: border-box;
 
-    padding: 0px var(--xs);
+    width: calc(100% - var(--xs));
+
+    padding: 0px var(--m);
 
     font-family: var(--playfair);
     font-size: var(--text);
@@ -166,8 +184,11 @@
 
     grid-column-start: 1;
     grid-column-end: 4;
+    box-sizing: border-box;
 
-    padding: var(--m) var(--xs);
+    width: calc(100% - var(--xs));
+
+    padding: var(--m) var(--m);
   }
 
   article-image img {
