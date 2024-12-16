@@ -70,15 +70,10 @@ h1 {
 }
 
 a {
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-line: 6%;
   text-underline-offset: 4px;
   color: var(--primary);
-}
-
-a logotype {
-  text-decoration: none;
-  text-decoration-line: 0px;
 }
 
 button {
@@ -256,7 +251,7 @@ catalog {
   display: grid;
   grid-template-columns: calc(33% - 8px) calc(33% - 8px) calc(33% - 8px);
   column-gap: var(--m);
-  row-gap: var(--m);
+  row-gap: var(--xl);
 
   width: 100vw;
   max-width: 768px;
@@ -279,9 +274,29 @@ catalog-item img {
 
 catalog-item-title {
   font-family: var(--anybody);
-  font-size: 20pt;
+  font-size: 16pt;
   font-weight: 500;
-  line-height: 120%;
+  line-height: 140%;
+}
+
+catalog-item div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--xs);
+  row-gap: var(--xs);
+  width: 100%;
+}
+
+catalog-item-tag {
+  display: inline;
+  width: fit-content;
+  text-decoration: none;
+  font-family: var(--anybody);
+  font-weight: 500;
+  padding: var(--xs) var(--m);
+
+  border: #0000ff dashed 2px;
+  border-radius: var(--xs);
 }
 
 /* __________________________________________________________________________________________________________________________________ */
@@ -358,13 +373,18 @@ article-text {
 
 article-text i,
 ul {
-  display: inline;
+  display: block;
 
   grid-column-start: 1;
   grid-column-end: 4;
 
   margin: 0px;
   padding: 0px;
+}
+
+article-text i {
+  padding-left: var(--m);
+  border-left: var(--primary) 2px solid;
 }
 
 article-text ul {
