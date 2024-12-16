@@ -30,14 +30,6 @@
   --playfair: "Playfair", serif;
 }
 
-
-
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
-
 caption {
   font-family: var(--playfair);
   font-size: var(--text-caption);
@@ -290,4 +282,119 @@ catalog-item-title {
   font-size: 20pt;
   font-weight: 500;
   line-height: 120%;
+}
+
+/* __________________________________________________________________________________________________________________________________ */
+
+article-header {
+  display: flex;
+  justify-content: space-between;
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  width: 100%;
+  height: auto;
+  padding: 0px var(--xs);
+
+  box-sizing: border-box;
+}
+
+article-header div {
+  display: flex;
+  gap: var(--xs);
+
+  height: min-content;
+}
+
+article-header-date {
+  display: flex;
+
+  font-family: var(--anybody);
+  font-size: var(--text);
+  font-weight: 500;
+
+  width: auto;
+
+  margin: auto 0px;
+}
+
+article-header-tag {
+  display: inline-block;
+  font-family: var(--anybody);
+  font-weight: 500;
+  padding: var(--xs) var(--m);
+
+  border: #0000ff dashed 2px;
+  border-radius: var(--xs);
+}
+
+article-title {
+  display: flex;
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  margin-top: var(--m);
+
+  padding: 0px var(--xs);
+
+  font-family: var(--anybody);
+  font-weight: 700;
+  font-size: var(--xxl);
+  line-height: 140%;
+}
+
+article-text {
+  display: block;
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  padding: 0px var(--xs);
+
+  font-family: var(--playfair);
+  font-size: var(--text);
+}
+
+article-text i,
+ul {
+  display: inline;
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  margin: 0px;
+  padding: 0px;
+}
+
+article-text ul {
+  display: list-item;
+  color: var(--primary);
+  list-style-type: square;
+
+  margin: 0px 0px 0px 1em;
+  padding: 0px;
+}
+
+article-image {
+  display: flex;
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  padding: var(--m) var(--xs);
+}
+
+article-image img {
+  display: flex;
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  border-radius: var(--xs);
+
+  width: 100%;
+  height: auto;
+
+  box-sizing: border-box;
 }
