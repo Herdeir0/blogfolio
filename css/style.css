@@ -125,7 +125,7 @@ button:active {
 
 body {
   margin: 0px;
-  padding: 0px 0px;
+  padding: 0px 0px 160px;
 
   background-color: var(--cloud);
 
