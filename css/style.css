@@ -125,7 +125,7 @@ button:active {
 
 body {
   margin: 0px;
-  padding: 0px 0px 120px;
+  padding: 0px 0px;
 
   background-color: var(--cloud);
 
@@ -158,10 +158,12 @@ footer {
   position: relative;
 
   width: 100%;
+  max-width: 1440px;
   display: flex;
   justify-content: space-between;
 
   margin-top: 160px;
+  padding: 0px var(--xl);
 
   font-family: var(--anybody);
   font-size: var(--text);
