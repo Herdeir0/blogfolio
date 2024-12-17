@@ -154,6 +154,20 @@ content {
   box-sizing: content-box;
 }
 
+footer {
+  position: relative;
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 160px;
+
+  font-family: var(--anybody);
+  font-size: var(--text);
+  font-weight: 500;
+}
+
 /* __ Navbar ______________________________________________________________________________________________________________________ */
 
 navbar {
