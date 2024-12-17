@@ -161,6 +161,7 @@ footer {
   max-width: 1440px;
   display: flex;
   justify-content: space-between;
+  box-sizing: content-box;
 
   margin-top: 160px;
   padding: 0px var(--xl);
