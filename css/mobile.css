@@ -186,6 +186,8 @@
     grid-column-end: 4;
     box-sizing: border-box;
 
+    overflow-x: scroll;
+
     width: calc(100% - var(--xs));
 
     padding: var(--m) var(--m);

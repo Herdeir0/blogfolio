@@ -22,7 +22,7 @@
 
   /* Text Sizes */
   --text-caption: 12px;
-  --text: 20px;
+  --text: 24px;
   --text-h3: 24px;
   --text-h2: 32px;
   --text-h1: 48px;
@@ -404,14 +404,14 @@ article-title {
   grid-column-start: 1;
   grid-column-end: 4;
 
-  margin-top: var(--m);
+  margin: var(--xs) 0px var(--m);
 
   padding: 0px var(--xs);
 
   font-family: var(--anybody);
   font-weight: 700;
   font-size: var(--xxl);
-  line-height: 140%;
+  line-height: 120%;
 }
 
 article-text {
@@ -452,7 +452,15 @@ article-text ul {
 }
 
 article-image {
-  display: flex;
+
+  display: grid;
+  grid-template-columns: 7.38% 7.38% 7.38% 7.38% 7.38% 7.38% 7.38% 7.38% 7.38% 7.38% 7.38% 7.38%;
+  column-gap: var(--xs);
+  
+  flex-direction: row;
+
+  width: auto;
+  height: fit-content;
 
   grid-column-start: 1;
   grid-column-end: 4;
@@ -463,8 +471,6 @@ article-image {
 article-image img {
   display: flex;
 
-  grid-column-start: 1;
-  grid-column-end: 4;
 
   border-radius: var(--xs);
 
