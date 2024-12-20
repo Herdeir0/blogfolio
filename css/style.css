@@ -127,7 +127,7 @@ button:active {
 
 body {
   margin: 0px;
-  padding: 0px 0px 160px;
+  padding: 0px 0px;
 
   background-color: var(--cloud);
 
@@ -163,14 +163,18 @@ footer {
   max-width: 1440px;
   display: flex;
   justify-content: space-between;
-  box-sizing: content-box;
+  box-sizing: border-box;
 
-  margin-top: 160px;
+  /*flex-direction: column;*/
+
+  margin: 160px auto 50px;
   padding: 0px var(--xl);
 
   font-family: var(--anybody);
-  font-size: var(--text);
+  font-size: var(--text-caption);
   font-weight: 500;
+
+  text-align: center;
 }
 
 /* __ Navbar ______________________________________________________________________________________________________________________ */
@@ -313,13 +317,13 @@ a catalog-item {
 }
 
 catalog-item:hover img {
-  background-size: 80%;
+  background-size: 120%;
 }
 
 catalog-item img {
   background-size: 110%;
   background-position: center;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   width: auto;
   height: 150px;
   border-radius: var(--xs);
