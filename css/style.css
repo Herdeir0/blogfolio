@@ -318,6 +318,7 @@ a catalog-item {
 
 catalog-item:hover img {
   background-size: 120%;
+  box-shadow: inset;
 }
 
 catalog-item img {
