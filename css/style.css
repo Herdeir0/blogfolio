@@ -156,6 +156,11 @@ content {
   box-sizing: content-box;
 }
 
+img {
+  border: none;
+  box-shadow: none;
+}
+
 footer {
   position: relative;
 
@@ -289,6 +294,23 @@ catalog-title {
   align-items: center;
 }
 
+catalog-selection {
+  display: flex;
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  column-gap: var(--xs);
+  row-gap: var(--xs);
+
+  padding: var(--xs) var(--xs);
+
+  flex-wrap: wrap;
+}
+
+catalog-selection a {
+  line-height: 32px;
+}
+
 catalog {
   grid-column-start: 1;
   grid-column-end: 4;
@@ -317,18 +339,19 @@ a catalog-item {
 }
 
 catalog-item:hover img {
-  background-size: 120%;
-  box-shadow: inset;
+  box-shadow: var(--primary) 4px 4px 0px;
 }
 
 catalog-item img {
-  background-size: 110%;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: auto;
   height: 150px;
+  border: none;
   border-radius: var(--xs);
-  transition: 160ms ease-out background-size;
+  box-shadow: var(--primary) 0px 0px 0px;
+  transition: 160ms ease-in-out box-shadow;
 }
 
 catalog-item-title {

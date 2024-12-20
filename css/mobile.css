@@ -45,6 +45,19 @@
     align-items: center;
   }
 
+  catalog-selection {
+    display: flex;
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    column-gap: var(--xs);
+    row-gap: var(--xs);
+
+    padding: var(--m) var(--m);
+
+    flex-wrap: wrap;
+  }
+
   catalog {
     grid-column-start: 1;
     grid-column-end: 4;
