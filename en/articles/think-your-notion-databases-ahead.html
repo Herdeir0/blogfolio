@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>David Herdeiro</title>
+
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/mobile.css" />
+    <link rel="stylesheet" href="../../css/tablet.css" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../img/svg/seagull-white.svg"
+    />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <navbar>
+      <a href="../index.html">
+        <logotype
+          ><img src="../../img/svg/seagull.svg" /><t
+            >David Herdeiro</t
+          ></logotype
+        >
+      </a>
+      <menu>
+        <text><a href="">en/pt</a></text>
+        <a href="contact.html"><button>let's talk</button></a>
+      </menu>
+    </navbar>
+    <content>
+      <back-to-catalog>
+        <a href="../catalog.html"><s>Back to catalog</s></a>
+      </back-to-catalog>
+      <article-header>
+        <article-header-date>2024 Oct. 27</article-header-date>
+        <div>
+          <a href="../catalog/organization.html"
+            ><article-header-tag>Organization</article-header-tag></a
+          >
+          <a href="../catalog/software.html"
+            ><article-header-tag>Software</article-header-tag></a
+          >
+        </div>
+      </article-header>
+      <article-title> Think your Notion databases ahead </article-title>
+      <article-text>
+        I was introduced to Notion a few years ago, by that time we were just
+        using it as a simple Wiki: some online pages with text and images.
+        Impressive wasn’t at all the word to describe it. Then, a few months
+        later, amidst a team restructure, something clicked on me:<br />
+        <br />
+        <i>You can’t break Notion (unless you really try).</i>
+        <br />
+        Notion is the perfect tool to lose yourself and experiment different
+        types of organization. There’s tables, databases, you can embed other
+        platforms on it, you can upload lossless images and videos, apply
+        searching filters, rules and automations. And the best of all: Real time
+        collaboration.<br />
+        <br />
+        In a matter of months, our Notion use grew like crazy.
+      </article-text>
+      <article-image>
+        <img
+          src="../../img/to-ai-or-not/this-image-was-not-ai-generated.webp"
+          style="grid-column: span 12"
+        />
+      </article-image>
+      <article-text>
+        Fast forward a few months, and I start to realize that my team was
+        fighting an organizational issue that I could solve. Here’s the thing:
+        We had three main, separated databases, all with their own Kanban boards
+        and tickets.
+      </article-text>
+      <article-image>
+        <img
+          src="../../img/to-ai-or-not/create-an-image-of-a-zombie-duck.webp"
+          style="grid-column: span 12"
+        />
+      </article-image>
+      <article-text>
+        Because these boards were all created at different times, by various
+        people, they didn’t looked the same. In a way, these boards evolved with
+        us, and you could tell that by the way that each one was constructed.
+        This meant, for example, that there were several properties with
+        equivalent meaning that had different name structures, and when you’re
+        scaling, that’s a truly bad idea.
+      </article-text>
+      <article-image>
+        <img
+          src="../../img/to-ai-or-not/create-an-image-of-a-zombie-duck.webp"
+          style="grid-column: span 12"
+        />
+      </article-image>
+      <article-text>
+        Another issue was the existence of duplicate tickets. A Sale Campaign
+        action will very probably also be a Social Media action, and if it meant
+        preparing some assets for printing, it would also be a Tasks action.
+        Only on very rare occasions we had tickets spanning the three databases,
+        but it was very common to have duplicates between Sales and Socials, as
+        they are practically the same.<br />
+        Duplicates also meant that there was two (and sometimes three)
+        communication routes. A ticket could have the status “waiting for
+        approval” while the other equivalent ticket would have “approved, post
+        within three days”.<br />
+        <br />
+        This happens because the databases were not synced. But they could be.
+      </article-text>
+      <article-image>
+        <img
+          src="../../img/notion-databases/get-synced.jpg"
+          style="grid-column: span 12"
+        />
+        <text-caption>
+          AI Generated Image of former US President Donald Trump used to deceive
+          minorities into voting on his favor, from BBC
+        </text-caption>
+      </article-image>
+      <article-text>
+        An option to solve this could be merging databases, it’s something that
+        Notion allows users to do, but given that we have mismatching
+        properties, the amount of work that it would require made me decide
+        against it. For reference, doing this would mean: open ticket, check all
+        data, get every property right, delete obsolete properties, repeat. And
+        it wouldn’t even tackle the duplicates issue, as it would import all the
+        tickets to the same database, and the user would need to add “choose
+        which duplicate ticket to delete” to the already exhausting list of
+        tasks.<br />
+        <br />
+        Taking this into consideration, I decided to go the manual way. Create a
+        new database and one by one import all the tickets, sounds slow right?
+        Keep reading and you’ll find out why it worked better than the
+        alternative.<br />
+        <br />
+        First, we have to decide what properties will be needed. This is not
+        only an exercise of future-proofing your system, but also a work of
+        nomenclature and classes (no, not those classes, Karl).<br />
+        <br />
+        So, for properties, here’s what I decided:<br />
+        <br />
+        <ul>
+          <b>Status</b
+          >: The current status of the ticket topic (Backlog, To Do, In
+          Progress, Review, On Hold, Complete, Canceled);
+        </ul>
+        <br />
+        <ul>
+          <b>Captain</b
+          >: The main face of the ticket, usually the person to contact in case
+          of any doubts;
+        </ul>
+        <br />
+        <ul>
+          <b>People</b
+          >: As more than one person can be simultaneously working on the same
+          task, here is where you tag everyone;
+        </ul>
+        <br />
+        <ul>
+          <b>Date</b
+          >: The relevant date of each topic (for social media tickets, this
+          would be the post date, for tasks, the day in which each task should
+          be performed);
+        </ul>
+        <br />
+        <ul>
+          <b>Priority</b
+          >: The level of importance of each task (None, Low, Mid, High,
+          Urgent);
+        </ul>
+        <br />
+        <ul>
+          <b>Media Channel</b
+          >: Where will it be published (Website, Instagram, LinkedIn, Medium,
+          Youtube);
+        </ul>
+        <br />
+        <ul>
+          <b>Tags</b
+          >: To make search for archived tickets easier (for example “Client
+          Events” or “Tech Reviews”);
+        </ul>
+        <br />
+        <ul>
+          <b>Databases</b
+          >: The thing that makes all of this works, check below why it is so
+          important
+        </ul>
+      </article-text>
+      <article-image>
+        <img
+          src="../../img/to-ai-or-not/chat-gpt-describe-housekeeper.webp"
+          style="grid-column: span 12"
+        />
+      </article-image>
+
+      <back-to-catalog>
+        <a href="../catalog.html"><s>Back to catalog</s></a>
+      </back-to-catalog>
+    </content>
+    <footer>
+      made by david herdeiro, 2024<br />
+      <a href="why-the-seagull.html"><s>why the seagull?</s></a>
+    </footer>
+  </body>
+</html>
