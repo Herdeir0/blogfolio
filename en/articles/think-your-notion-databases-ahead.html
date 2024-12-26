@@ -30,7 +30,7 @@
       </a>
       <menu>
         <text><a href="">en/pt</a></text>
-        <a href="contact.html"><button>let's talk</button></a>
+        <a href="../contact.html"><button>let's talk</button></a>
       </menu>
     </navbar>
     <content>
@@ -67,21 +67,36 @@
       </article-text>
       <article-image>
         <img
-          src="../../img/to-ai-or-not/this-image-was-not-ai-generated.webp"
+          src="../../img/notion-databases/notion-use.jpg"
           style="grid-column: span 12"
+          alt="Graph like image, showing the increase of Notion use over
+          time"
         />
+        <text-caption role="none"
+          >Graph like image, showing the increase of Notion use over
+          time</text-caption
+        >
       </article-image>
       <article-text>
         Fast forward a few months, and I start to realize that my team was
         fighting an organizational issue that I could solve. Here’s the thing:
-        We had three main, separated databases, all with their own Kanban boards
+        We had three main, separated databases, all with their own
+        <a href="https://www.atlassian.com/agile/kanban/boards"
+          ><s>Kanban boards</s></a
+        >
         and tickets.
       </article-text>
       <article-image>
         <img
-          src="../../img/to-ai-or-not/create-an-image-of-a-zombie-duck.webp"
+          src="../../img/notion-databases/notion-databases.jpg"
           style="grid-column: span 12"
+          alt="Representation of three Kanban boards: Social Media, Sales Campaigns
+          and Tasks"
         />
+        <text-caption role="none">
+          Representation of three Kanban boards: Social Media, Sales Campaigns
+          and Tasks
+        </text-caption>
       </article-image>
       <article-text>
         Because these boards were all created at different times, by various
@@ -93,9 +108,17 @@
       </article-text>
       <article-image>
         <img
-          src="../../img/to-ai-or-not/create-an-image-of-a-zombie-duck.webp"
+          src="../../img/notion-databases/notion-unsyced-properties.jpg"
           style="grid-column: span 12"
+          alt="Representation of the ticket construction from each Kanban board,
+          where the properties with same semantic value differ in name, logic
+          and order"
         />
+        <text-caption role="none">
+          Representation of the ticket construction from each Kanban board,
+          where the properties with same semantic value differ in name, logic
+          and order
+        </text-caption>
       </article-image>
       <article-text>
         Another issue was the existence of duplicate tickets. A Sale Campaign
@@ -115,11 +138,8 @@
         <img
           src="../../img/notion-databases/get-synced.jpg"
           style="grid-column: span 12"
+          alt="Image with the text Get Synced, where the N was replaced by Notion's logomark"
         />
-        <text-caption>
-          AI Generated Image of former US President Donald Trump used to deceive
-          minorities into voting on his favor, from BBC
-        </text-caption>
       </article-image>
       <article-text>
         An option to solve this could be merging databases, it’s something that
@@ -139,65 +159,147 @@
         <br />
         First, we have to decide what properties will be needed. This is not
         only an exercise of future-proofing your system, but also a work of
-        nomenclature and classes (no, not those classes, Karl).<br />
+        nomenclature and classes (not those classes, Karl).<br />
+        <br />
+        For this, new properties might be created and older ones might be
+        deleted, the important is to keep the logic simple, open, preferably on
+        a reading order, and avoid too specific properties (a Local property is
+        probably unnecessary for a Communications’ team, but the Media Channels
+        is very important!).<br />
         <br />
         So, for properties, here’s what I decided:<br />
         <br />
         <ul>
-          <b>Status</b
-          >: The current status of the ticket topic (Backlog, To Do, In
-          Progress, Review, On Hold, Complete, Canceled);
+          <b>Captain</b>
+          (Property Type: Person)<br />
+          The main face of the ticket, usually the person to contact in case of
+          any doubts;
         </ul>
         <br />
         <ul>
-          <b>Captain</b
-          >: The main face of the ticket, usually the person to contact in case
-          of any doubts;
-        </ul>
-        <br />
-        <ul>
-          <b>People</b
-          >: As more than one person can be simultaneously working on the same
+          <b>People</b>
+          (Multi-select)<br />
+          As more than one person can be simultaneously working on the same
           task, here is where you tag everyone;
         </ul>
         <br />
         <ul>
-          <b>Date</b
-          >: The relevant date of each topic (for social media tickets, this
-          would be the post date, for tasks, the day in which each task should
-          be performed);
+          <b>Date</b>
+          (Date)<br />
+          The relevant date of each topic;
         </ul>
         <br />
         <ul>
-          <b>Priority</b
-          >: The level of importance of each task (None, Low, Mid, High,
-          Urgent);
+          <b>Media Channel</b>
+          (Multi-select)<br />
+          Where will it be published;
         </ul>
         <br />
         <ul>
-          <b>Media Channel</b
-          >: Where will it be published (Website, Instagram, LinkedIn, Medium,
-          Youtube);
+          <b>Tags</b>
+          (Multi-select)<br />
+          To make search for archived tickets easier;
         </ul>
         <br />
         <ul>
-          <b>Tags</b
-          >: To make search for archived tickets easier (for example “Client
-          Events” or “Tech Reviews”);
+          <b>Databases</b>
+          (Multi-select)<br />
+          The database to which the ticket should be attached to;
         </ul>
         <br />
         <ul>
-          <b>Databases</b
-          >: The thing that makes all of this works, check below why it is so
-          important
+          <b>Status</b>
+          (Selection)<br />
+          The current status of the ticket topic;
+        </ul>
+        <br />
+        <ul>
+          <b>Priority</b>
+          (Selection)<br />
+          The level of importance of each task;
+        </ul>
+        <br />
+        <ul>
+          <b>Comments</b>
+          (Text)<br />
+          Extra bits of information;
         </ul>
       </article-text>
       <article-image>
         <img
-          src="../../img/to-ai-or-not/chat-gpt-describe-housekeeper.webp"
+          src="../../img/notion-databases/notion-synced-properties.jpg"
           style="grid-column: span 12"
+          alt="Representation of the new ticket construction, where the properties
+          with same semantic value have the same name, logic and order. The
+          reading order can change according to each team needs, but in this
+          case the tickets should be read like The Year Review Post is under
+          Jorge's charge, with the help of Penelope and Peter, and will be
+          released at 31 dec. 2024 on LinkedIn and Instagram. It counts as Soft
+          Content and belong to the Social Media board. It's currently in
+          progress and has a mid-level priority"
+        />
+        <text-caption role="none">
+          Representation of the new ticket construction, where the properties
+          with same semantic value have the same name, logic and order. The
+          reading order can change according to each team needs, but in this
+          case the tickets should be read like "The Year Review Post is under
+          Jorge's charge, with the help of Penelope and Peter, and will be
+          released at 31 dec. 2024 on LinkedIn and Instagram. It counts as Soft
+          Content and belong to the Social Media board. It's currently in
+          progress and has a mid-level priority"
+        </text-caption>
+      </article-image>
+      <article-text>
+        Second, we just need to create different table views that filter the
+        Database property input. This will allow you to create the perception of
+        different databases, as you’ll only see specific tickets in each
+        view.<br />
+        <br />
+        Using Notion’s Filter option, after creating a new table view, we apply
+        the filter “Database contains” followed by the view’s target. So,
+        following my team’s example, after all filters get applied we should
+        have a table with at least three different views (Social Media, Tasks
+        and Sales Campaigns), and each view will only show you tickets that have
+        those databases applied.<br />
+        <br />
+        If you make the Database property a Multi-select type, you should also
+        be able to see tickets that are shared between databases, and that’s
+        where the magic is!<br />
+        <br />
+        We now have Synced Pseudo-Databases. Remember, all of this is just one
+        database, but because we’re filtering out based on the ticket’s
+        properties, it gives the impression and functionality of several
+        databases.
+      </article-text>
+      <article-image>
+        <img
+          src="../../img/notion-databases/notion-synced-databases.jpg"
+          style="grid-column: span 12"
+          alt=""
         />
       </article-image>
+      <article-text
+        >After some orientation and restructuring of processes, this proved to
+        be a great way of organizing tickets across several boards. As I see it,
+        the pros of synchronous databases highly outpace the cons of time
+        invested on rebuilding the system.<br />
+        <br />
+        By syncing the information, we allow communication to flow undoubtedly
+        between teammates, without the need for extra messages, reducing the
+        time needed to pick up tasks. It also simplifies the life of the team’s
+        coordinator, as there are no more duplicates and changes applied to a
+        ticket will be reachable independently of the pseudo-database that
+        you’re at.<br />
+        <br />
+        <callout>
+          <b>Note!</b><br />
+          For this system to work, it’s necessary to implement a disciplined
+          ticket creation. Not filling the Database Property will result on not
+          seeing the ticket on your pseudo-databases.
+        </callout>
+        <br />
+        <br />
+      </article-text>
 
       <back-to-catalog>
         <a href="../catalog.html"><s>Back to catalog</s></a>

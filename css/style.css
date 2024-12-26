@@ -21,7 +21,7 @@
   --xxl: 48px;
 
   /* Text Sizes */
-  --text-caption: 12px;
+  --text-caption: 14px;
   --text: 24px;
   --text-h3: 24px;
   --text-h2: 32px;
@@ -91,6 +91,14 @@ s {
   color: var(--primary);
 }
 
+callout {
+  display: block;
+  padding: var(--m);
+
+  border: var(--primary) dashed 2px;
+  border-radius: var(--xs);
+}
+
 button {
   display: block-inline;
 
@@ -99,8 +107,8 @@ button {
 
   padding: var(--s) var(--s);
 
-  border: var(--primary) solid 0px;
-  box-shadow: inset var(--primary) 0px 0px 0px 2px;
+  border: var(--primary) solid 2px;
+  /*box-shadow: inset var(--primary) 0px 0px 0px 2px;*/
   border-radius: var(--xs);
 
   font-family: var(--playfair);
@@ -114,9 +122,10 @@ button {
 }
 
 button:hover {
-  /*border: var(--primary) solid 4px;*/
+  border: var(--primary) solid 2px;
+  box-shadow: var(--primary) 4px 4px 0px;
 
-  box-shadow: inset var(--primary) 0px 0px 0px 4px;
+  /*box-shadow: inset var(--primary) 0px 0px 0px 4px;*/
   cursor: pointer;
 }
 
@@ -511,6 +520,8 @@ article-separation {
   line-height: 140%;
 
   text-align: center;
+
+  padding: var(--xxl) var(--xs);
 }
 
 article-image {
@@ -526,7 +537,7 @@ article-image {
   grid-column-start: 1;
   grid-column-end: 4;
 
-  padding: var(--m) var(--xs);
+  padding: var(--xxl) var(--xs);
 }
 
 article-image img {

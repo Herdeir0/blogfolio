@@ -14,6 +14,11 @@
     display: none;
   }
 
+  footer {
+    margin: 100px auto 50px;
+    padding: 0px var(--m);
+  }
+
   hello-message {
     grid-column-start: 1;
     grid-column-end: 4;
