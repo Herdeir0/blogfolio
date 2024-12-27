@@ -204,6 +204,8 @@
   article-image {
     display: flex;
 
+    flex-direction: column;
+
     grid-column-start: 1;
     grid-column-end: 4;
     box-sizing: border-box;
