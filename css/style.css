@@ -108,7 +108,7 @@ button {
   padding: var(--s) var(--s);
 
   border: var(--primary) solid 2px;
-  /*box-shadow: inset var(--primary) 0px 0px 0px 2px;*/
+  box-shadow: var(--primary) 0px 0px 0px 0px;
   border-radius: var(--xs);
 
   font-family: var(--playfair);
@@ -550,4 +550,6 @@ article-image img {
   margin: var(--xs) 0;
 
   box-sizing: border-box;
+
+  border: rgba(68, 0, 255, 0.1) solid 2px;
 }
