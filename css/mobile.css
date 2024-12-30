@@ -15,7 +15,7 @@
   }
 
   content {
-    margin: 80px auto 0px;
+    margin: 100px auto 0px;
   }
 
   footer {
@@ -39,7 +39,7 @@
     padding-right: var(--m);
 
     font-size: var(--text);
-    font-weight: 500;
+    font-weight: 300;
     line-height: 140%;
   }
 
