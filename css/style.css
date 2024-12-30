@@ -387,7 +387,7 @@ catalog-item-tag {
   padding: var(--xs) var(--s) calc(var(--xs) - 3px) var(--s);
 
   color: #0000ff;
-  border: #0000ff dashed 1px;
+  border: #0000ff dashed 2px;
   border-radius: var(--xs);
 
   border-radius: 4px;
