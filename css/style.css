@@ -274,7 +274,7 @@ hello-message {
   row-gap: var(--xxl);
 
   font-family: var(--anybody);
-  font-size: 32px;
+  font-size: var(--text-h2);
   font-weight: 500;
   line-height: 40px;
 }
@@ -285,7 +285,7 @@ summary {
   padding-left: var(--xs);
   padding-right: var(--xs);
 
-  font-size: 32px;
+  font-size: var(--text-h2);
   font-weight: 500;
   line-height: 40px;
 }
@@ -566,7 +566,7 @@ cv-tags-container {
 cv-tags {
   display: inline-block;
   font-family: var(--playfair);
-  font-size: 32px;
+  font-size: var(--text-h2);
   font-weight: 500;
   line-height: normal;
   padding: var(--xs) var(--m);
