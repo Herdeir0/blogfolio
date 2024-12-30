@@ -553,3 +553,26 @@ article-image img {
 
   border: rgba(68, 0, 255, 0.1) solid 2px;
 }
+
+/* __ CV ________________________________________________________________________________________________________________________________ */
+
+cv-tags-container {
+  display: block;
+  width: 100%;
+  margin: var(--m) 0px var(--xl);
+  row-gap: var(--xs);
+}
+
+cv-tags {
+  display: inline-block;
+  font-family: var(--playfair);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: normal;
+  padding: var(--xs) var(--m);
+
+  margin-bottom: var(--xs);
+
+  border: #0000ff dashed 2px;
+  border-radius: var(--xs);
+}
