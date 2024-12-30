@@ -38,9 +38,9 @@
     padding-left: var(--m);
     padding-right: var(--m);
 
-    font-size: 20pt;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 26pt;
+    line-height: 26px;
   }
 
   catalog-title {
@@ -157,7 +157,7 @@
 
     font-family: var(--anybody);
     font-weight: 700;
-    font-size: 32pt;
+    font-size: 32px;
     line-height: 140%;
   }
 
