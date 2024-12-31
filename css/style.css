@@ -566,7 +566,7 @@ cv-tags-container {
 cv-tags {
   display: inline-block;
   font-family: var(--playfair);
-  font-size: var(--text-h2);
+  font-size: var(--text);
   font-weight: 300;
   line-height: normal;
   padding: var(--xs) var(--m);
