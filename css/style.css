@@ -65,7 +65,7 @@ h3 {
 h2 {
   font-family: var(--anybody);
   font-size: var(--text-h2);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 120%;
 
   margin: 0px;
@@ -74,6 +74,7 @@ h2 {
 h1 {
   font-family: var(--anybody);
   font-size: var(--text-h1);
+  font-weight: 700;
   line-height: 120%;
 
   margin: 0px;
@@ -275,7 +276,7 @@ hello-message {
 
   font-family: var(--anybody);
   font-size: var(--text-h2);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 40px;
 }
 
