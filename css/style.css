@@ -157,8 +157,9 @@ content {
   column-gap: var(--m);
 
   width: 100%;
-  max-width: 768px;
+  max-width: 960px;
 
+  padding: 0px var(--m);
   margin: 140px auto 0px;
 
   font-family: var(--playfair);
@@ -211,7 +212,7 @@ navbar {
   left: 0px;
   right: 0px;
 
-  padding: var(--xl) var(--xl);
+  padding: var(--xl) var(--m);
   margin: auto;
 
   background-color: var(--cloud);
@@ -331,7 +332,7 @@ catalog {
   row-gap: var(--xl);
 
   width: 100%;
-  max-width: 768px;
+  /*max-width: 768px;*/
 
   margin-top: var(--s);
 }
@@ -339,13 +340,16 @@ catalog {
 catalog-item {
   display: flex;
   flex-direction: column;
+  
   width: 100%;
+
   height: fit-content;
   row-gap: var(--xs);
 }
 
 a catalog-item {
   text-decoration: none;
+  grid-column: span 1;
 }
 
 catalog-item:hover img {
@@ -357,7 +361,7 @@ catalog-item img {
   background-position: center;
   background-repeat: no-repeat;
   width: auto;
-  height: 150px;
+  height: 96px;
   border: none;
   border-radius: var(--xs);
   box-shadow: var(--primary) 0px 0px 0px;
