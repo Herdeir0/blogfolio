@@ -44,15 +44,13 @@
       <h2>Articles</h2>
     </catalog-title>
     <catalog-selection>
-      <a href="catalog/design.html"><button>Design</button></a>
-      <a href="catalog/ethics.html"><button>Ethics</button></a>
-      <a href="catalog/gen-ai.html"><button>Gen AI</button></a>
-      <!-- <a href="catalog/long-format.html"><button>Long Format</button></a> -->
-      <a href="catalog/organization.html"><button>Organization</button></a>
-      <a href="catalog/software.html"><button>Software</button></a>
-      <a href="catalog/team-work.html"><button>Team work</button></a>
-      <!-- <a href="catalog/typography.html"><button>Typography</button></a> -->
-      <!-- <a href="catalog/video.html"><button>Video</button></a> -->
+      <button onclick="filterElements('all')">All</button>
+      <button onclick="filterElements('design')">Design</button>
+      <button onclick="filterElements('ethics')">Ethics</button>
+      <button onclick="filterElements('genai')">Gen AI</button>
+      <button onclick="filterElements('organization')">Organization</button>
+      <button onclick="filterElements('software')">Software</button>
+      <button onclick="filterElements('teamwork')">Teamwork</button>
     </catalog-selection>
     <catalog>
       <!----------------------------------------------------------------------------------------------Gogolink-->
@@ -96,22 +94,22 @@
           </catalog-item>
         </a>-->
       <!----------------------------------------------------------------------------------------------Optimize your workflow-->
-      <a href="articles/optimize-your-workflow-get-parallel.html">
+      <a class="organization show" href="articles/optimize-your-workflow-get-parallel.html"">
         <catalog-item>
-          <img src="" style="background-image: url(../img/get-parallel/get-parallel-cover.png);" />
-          <catalog-item-date-and-time>
-            <div>2025 Jan. 02</div>
-            <div>3 min. read</div>
-          </catalog-item-date-and-time>
-          <catalog-item-title>Optimize your Workflow: Get parallel</catalog-item-title>
-          <br>
-          <div>
-            <catalog-item-tag>Organization</catalog-item-tag>
-          </div>
-        </catalog-item>
+          <img src="" style=" background-image: url(../img/get-parallel/get-parallel-cover.png);" />
+      <catalog-item-date-and-time>
+        <div>2025 Jan. 02</div>
+        <div>3 min. read</div>
+      </catalog-item-date-and-time>
+      <catalog-item-title>Optimize your Workflow: Get parallel</catalog-item-title>
+      <br>
+      <div>
+        <catalog-item-tag>Organization</catalog-item-tag>
+      </div>
+      </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------Notion databases-->
-      <a href="articles/think-your-notion-databases-ahead.html">
+      <a class="organization software show" href="articles/think-your-notion-databases-ahead.html">
         <catalog-item>
           <img src="" style="background-image: url(../img/notion-databases/notion-logomark.jpg);" />
           <catalog-item-date-and-time>
@@ -127,7 +125,7 @@
         </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------AI or not AI-->
-      <a href="../en/articles/creatives-to-ai-or-not-to-ai.html">
+      <a class="ethics genai show" href="../en/articles/creatives-to-ai-or-not-to-ai.html">
         <catalog-item>
           <img src="" style="background-image: url(../img/to-ai-or-not/to-ai-or-not-cover.webp);" />
           <catalog-item-date-and-time>
@@ -143,7 +141,7 @@
         </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------Team Up-->
-      <a href="../en/articles/team-up-a-personal-exprience.html">
+      <a class="teamwork show" href="../en/articles/team-up-a-personal-exprience.html">
         <catalog-item>
           <img src="" style="background-image: url(../img/team-up/team-up-cover.webp)" />
           <catalog-item-date-and-time>
@@ -153,12 +151,12 @@
           <catalog-item-title>Team Up: A personal experience</catalog-item-title>
           <br>
           <div>
-            <catalog-item-tag>Team work</catalog-item-tag>
+            <catalog-item-tag>Teamwork</catalog-item-tag>
           </div>
         </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------They dont need a designer-->
-      <a href="../en/articles/hot-take-they-probably-dont-need-a-designer.html">
+      <a class="ethics show" href="../en/articles/hot-take-they-probably-dont-need-a-designer.html">
         <catalog-item>
           <img src=""
             style="background-image: url(../img/they-probably-dont-need-a-designer/scott-graham-5fNmWej4tAA-unsplash.jpg);" />
@@ -174,7 +172,7 @@
         </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------you dont need colors-->
-      <a href="../en/articles/you-dont-need-colors-to-communicate.html">
+      <a class="design show" href="../en/articles/you-dont-need-colors-to-communicate.html">
         <catalog-item>
           <img src="" style="background-image: url(../img/colors-to-communicate/colors-to-communicate-cover.webp);" />
           <catalog-item-date-and-time>
@@ -194,6 +192,9 @@
     © 2024 david herdeiro. All rights reserved.<br />
     <a href="why-the-seagull.html"><s>why the seagull?</s></a>
   </footer>
+
+  <script src="../js/catalog-filter.js"></script>
 </body>
+
 
 </html>
