@@ -361,6 +361,8 @@ catalog-item {
   box-sizing: border-box;
 
   transition: 120ms ease-in-out box-shadow;
+
+  overflow: hidden;
 }
 
 catalog-item:hover {
@@ -385,6 +387,8 @@ catalog-item-title {
   font-size: 28px;
   font-weight: 500;
   line-height: 140%;
+
+  min-height: 120px;
 }
 
 catalog-item div {
