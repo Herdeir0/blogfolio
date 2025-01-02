@@ -2,7 +2,7 @@
 
 :root {
   /* Colors */
-  --primary: #0000ff;
+  --primary: #0059ff;
   --cloud: #fcfcfc;
   --cloud-dark: #e4e4e4;
   --charcoal: #0b0b0b;
@@ -35,7 +35,7 @@
 /* __ Global ______________________________________________________________________________________________________________________ */
 
 * {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 text-caption {
@@ -83,6 +83,7 @@ h1 {
 a {
   text-decoration: none;
   color: var(--primary);
+  cursor: pointer;
 }
 
 s {
@@ -329,48 +330,59 @@ catalog {
   display: grid;
   grid-template-columns: calc(33% - 8px) calc(33% - 8px) calc(33% - 8px);
   column-gap: var(--m);
-  row-gap: var(--xl);
+  row-gap: var(--m);
+
+  padding: var(--xs) var(--xs) 0px;
 
   width: 100%;
+  box-sizing: border-box;
   /*max-width: 768px;*/
-
-  margin-top: var(--s);
 }
+
+catalog a {
+  cursor: pointer;
+}
+
 
 catalog-item {
   display: flex;
   flex-direction: column;
   
   width: 100%;
+  height: fit-content;
 
   height: fit-content;
   row-gap: var(--xs);
+
+  border: var(--primary) 2px solid;
+  border-radius: var(--xs);
+
+  padding: var(--m) var(--m) var(--xl);
+  box-sizing: border-box;
+
+  transition: 120ms ease-in-out box-shadow;
 }
 
-a catalog-item {
-  text-decoration: none;
-  grid-column: span 1;
-}
-
-catalog-item:hover img {
+catalog-item:hover {
   box-shadow: var(--primary) 4px 4px 0px;
 }
 
 catalog-item img {
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: auto;
-  height: 96px;
+  height: 120px;
   border: none;
-  border-radius: var(--xs);
-  box-shadow: var(--primary) 0px 0px 0px;
-  transition: 160ms ease-in-out box-shadow;
+  border-radius: 6px 6px 0px 0px;
+
+  margin: -16px -16px var(--m);
 }
 
 catalog-item-title {
   font-family: var(--anybody);
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 500;
   line-height: 140%;
 }
@@ -396,6 +408,18 @@ catalog-item-tag {
   border-radius: var(--xs);
 
   border-radius: 4px;
+}
+
+catalog-item-date-and-time {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+catalog-item-date-and-time div {
+  display: block;
+
+  width: fit-content;
 }
 
 /* __ Article ________________________________________________________________________________________________________________________________ */
