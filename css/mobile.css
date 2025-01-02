@@ -24,6 +24,10 @@
     padding: 0px var(--m);
   }
 
+  footer a {
+    width: min-content;
+  }
+
   hello-message {
     grid-column-start: 1;
     grid-column-end: 4;
@@ -55,6 +59,11 @@
 
     justify-content: space-between;
     align-items: center;
+  }
+
+
+  catalog-title h2 {
+    width: min-content;
   }
 
   catalog-selection {

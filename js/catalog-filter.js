@@ -16,4 +16,5 @@ function filterElements(selectedClass) {
         }
       }
     });
+
 }

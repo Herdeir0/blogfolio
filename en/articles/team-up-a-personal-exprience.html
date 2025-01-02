@@ -37,7 +37,7 @@
       <article-header-date>2023 Nov. 23 (@<a
           href="https://medium.com/@david.herdeiro/team-up-a-personal-experience-8044b5a9d551"><s>Medium.com</s></a>)</article-header-date>
       <div>
-        <a href="../catalog/team-work.html"><button>Team work</button></a>
+        <a href="../catalog/teamwork.html"><button>Teamwork</button></a>
       </div>
     </article-header>
     <article-title> Team Up: A personal experience </article-title>
@@ -179,6 +179,15 @@
     © 2024 david herdeiro. All rights reserved.<br />
     <a href="why-the-seagull.html"><s>why the seagull?</s></a>
   </footer>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const filter = urlParams.get('teamwork'); // e.g., 'class1', 'class2', or 'all'
+
+    // Apply the filter on page load
+    if (filter) {
+      applyFilter(filter);
+    }
+  </script>
 </body>
 
 </html>
