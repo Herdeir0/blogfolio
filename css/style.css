@@ -89,6 +89,7 @@ a {
 s {
   text-decoration: underline;
   text-decoration-line: 2px;
+  -moz-text-decoration-line: 2px;
   text-underline-offset: 2px;
   color: var(--primary);
 }
