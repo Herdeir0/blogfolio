@@ -91,6 +91,7 @@ s {
   text-decoration-line: 2px;
   -moz-text-decoration-line: 2px;
   text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
   color: var(--primary);
 }
 
