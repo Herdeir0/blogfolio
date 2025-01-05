@@ -384,10 +384,10 @@ catalog-item img {
   background-repeat: no-repeat;
   width: auto;
   height: 120px;
-  border: none;
+  border-bottom: var(--primary) 2px solid;
   border-radius: 6px 6px 0px 0px;
 
-  margin: -16px -16px var(--m);
+  margin: -16px -16px var(--xs);
 }
 
 catalog-item-title {
