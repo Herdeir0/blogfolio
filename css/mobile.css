@@ -89,11 +89,11 @@
     line-height: 140%;
   }
 
-  #buttonDesktop {
+  .buttonDesktop {
     display: none;
   }
   
-  #buttonMobile {
+  .buttonMobile {
     display: block;
   }
 
