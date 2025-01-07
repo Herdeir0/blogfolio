@@ -1,4 +1,39 @@
 @media only screen and (max-width: 470px) {
+  /* __ Variables ______________________________________________________________________________________________________________________ */
+
+  :root {
+    /* Colors */
+    --primary: #0059ff;
+    --cloud: #fcfcfc;
+    --cloud-dark: #e4e4e4;
+    --charcoal: #0b0b0b;
+
+    /* Effects */
+    --shadow-normal: 0px 0px var(--xs) rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0px var(--xxs) var(--s) rgba(0, 0, 0, 0.1);
+
+    /* General Sizes */
+    --xxs: 4px;
+    --xs: 8px;
+    --s: 12px;
+    --m: 16px;
+    --l: 20px;
+    --xl: 32px;
+    --xxl: 48px;
+
+    /* Text Sizes */
+    --text-caption: 12px;
+    --text: 20px;
+    --text-h3: 24px;
+    --text-h2: 28px;
+    --text-h1: 36px;
+
+    /* Typography */
+    --anybody: "Anybody", sans-serif;
+    --playfair: "Playfair", serif;
+  }
+
+  
   html {
     overflow-x: scroll;
   }
@@ -22,10 +57,16 @@
   footer {
     margin: 100px auto 50px;
     padding: 0px var(--m);
+
+    line-height: 140%;
+
+    flex-direction: column-reverse;
+
+    row-gap: var(--s);
   }
 
   footer a {
-    width: min-content;
+    width: fit-content;
   }
 
   hello-message {
@@ -46,6 +87,14 @@
     font-size: var(--text);
     font-weight: 300;
     line-height: 140%;
+  }
+
+  #buttonDesktop {
+    display: none;
+  }
+  
+  #buttonMobile {
+    display: block;
   }
 
   /* __ CATALOG ________________________________________________________________________________________________________________________________ */
