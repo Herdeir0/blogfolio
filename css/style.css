@@ -385,6 +385,7 @@ catalog-item:hover {
   box-shadow: var(--primary) 4px 4px 0px;
 }
 
+
 catalog-item img {
 
   background-size: cover;
