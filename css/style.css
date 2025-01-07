@@ -196,11 +196,11 @@ footer {
   text-align: left;
 }
 
-#cvDesktop {
+#buttonDesktop {
   display: block;
 }
 
-#cvMobile {
+#buttonMobile {
   display: none;
 }
 
