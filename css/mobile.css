@@ -1,4 +1,4 @@
-@media only screen and (max-width: 470px) {
+@media only screen and (max-width: 740px) {
   /* __ Variables ______________________________________________________________________________________________________________________ */
 
   :root {
@@ -23,7 +23,7 @@
 
     /* Text Sizes */
     --text-caption: 12px;
-    --text: 20px;
+    --text: 22px;
     --text-h3: 24px;
     --text-h2: 28px;
     --text-h1: 36px;
@@ -60,7 +60,7 @@
 
     line-height: 140%;
 
-    flex-direction: column-reverse;
+    flex-direction: column;
 
     row-gap: var(--s);
   }
@@ -85,7 +85,7 @@
     padding-right: var(--m);
 
     font-size: var(--text);
-    font-weight: 300;
+    font-weight: medium;
     line-height: 140%;
   }
 
