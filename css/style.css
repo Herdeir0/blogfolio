@@ -386,6 +386,10 @@ catalog-item:hover {
 }
 
 
+.unavailable {
+  filter: blur(5px);
+}
+
 catalog-item img {
 
   background-size: cover;
