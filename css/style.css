@@ -602,6 +602,8 @@ article-image {
   grid-column-end: 4;
 
   padding: var(--xxl) var(--xs);
+
+  overflow: hidden !important;
 }
 
 article-image img {
