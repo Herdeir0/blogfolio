@@ -194,8 +194,6 @@ footer {
   font-weight: 500;
 
   text-align: left;
-
-  align-content: end;
 }
 
 footer div {
@@ -249,13 +247,13 @@ logotype {
 
   font-family: var(--anybody);
   font-size: 24px;
-  font-weight: 500;
 
   color: var(--primary);
 }
 
 logotype t {
   line-height: 24px;
+  font-weight: 700;
 }
 
 logotype img {
@@ -402,6 +400,7 @@ catalog-item:hover {
 }
 
 catalog-item img {
+  display: none;
 
   background-size: cover;
   background-position: center;
