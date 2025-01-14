@@ -254,6 +254,8 @@ logotype {
 logotype t {
   line-height: 24px;
   font-weight: 700;
+
+  margin-bottom: -8px;
 }
 
 logotype img {
