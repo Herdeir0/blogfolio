@@ -419,7 +419,7 @@ catalog-item:hover {
   opacity: 0.5;
 }
 
-catalog-item img {
+catalog-item-image {
   display: block;
 
   background-size: cover;
