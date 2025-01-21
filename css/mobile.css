@@ -168,7 +168,7 @@
     box-sizing: border-box;
   }
 
-  catalog-item img {
+  catalog-item-img {
     display: block;
     height: 100px;
   }
