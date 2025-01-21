@@ -33,7 +33,7 @@
     </menu>
   </navbar>
   <content>
-    <hello-message> Ora olá olá </hello-message>
+    <hello-message style="font-size: 6rem; font-weight: 900; line-height: normal;"> Olá! </hello-message>
     <summary>
       O meu nome é David e sou Designer de Comunicação por educação, e um Generalista por profissão.<br />
       <br />
@@ -43,9 +43,222 @@
       Designer Lead da Equipa de
       Comunicações e Marca, e em busca de novas oportunidades. Prazer em conhecer-te.<br>
       <br>
-      <a href="cv.html"><button>Dá uma vista de olhos no meu CV</button></a>
+      <a id="buttonDesktop" href="cv.html"><button>Dá uma vista de olhos no meu CV</button></a>
+      <a id="buttonMobile" href="cv.html"><button>Vê o meu CV</button></a>
     </summary>
   </content>
+
+  <content id="projects-and-demos">
+    <catalog-title>
+      <h2 style="font-size: 6rem; font-weight: 900;">Projetos & Demos</h2>
+    </catalog-title>
+    <catalog-selection>
+      <button onclick="filterElementsProject('project-all')">Todos</button>
+      <button onclick="filterElementsProject('project-creativity')">Criatividade</button>
+      <button onclick="filterElementsProject('project-graphic-design')">Design Gráfico</button>
+      <button onclick="filterElementsProject('project-events')">Eventos</button>
+      <button onclick="filterElementsProject('project-video')">Vídeo</button>
+    </catalog-selection>
+    <catalog class="project">
+      <!----------------------------------------------------------------------------------------------Social Media-->
+      <a class="project-graphic-design p-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-image>
+            <img src="" style="background-image: url('../img/four-years-of-in-house-design/recap-desktop.jpg');" />
+          </catalog-item-image>
+          <catalog-item-date-and-time>
+            <div><!--10-Jan-2025-->Tradução em Progresso</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Redes Sociais: Faz-te Notar</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Design Gráfico</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Events-->
+      <a class="project-events p-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-image>
+            <img src=""
+              style="background-image: url('../img/four-years-of-in-house-design/tech-meetup-porto-02-desktop.jpg');" />
+          </catalog-item-image>
+          <catalog-item-date-and-time>
+            <div><!--10-Jan-2025-->Tradução em Progresso</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Não Há Publicidade Como Eventos</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Eventos</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Video-->
+      <a class="project-video p-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-image>
+            <img src="" style="background-image: url('../img/four-years-of-in-house-design/video-cover.jpg');" />
+          </catalog-item-image>
+          <catalog-item-date-and-time>
+            <div><!--10-Jan-2025-->Tradução em Progresso</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Vídeo: Uma Forma de Arte e uma Ferramenta de Vendas</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Vídeo</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Video-->
+      <a class="project-creativity p-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-image>
+            <img src=""
+              style="background-image: url('../img/four-years-of-in-house-design/creativity-01-desktop.jpg');" />
+          </catalog-item-image>
+          <catalog-item-date-and-time>
+            <div><!--10-Jan-2025-->Tradução em Progresso</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Criar pelo Ato de Criar</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Criatividade</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+    </catalog>
+  </content>
+  <content id="articles">
+    <catalog-title>
+      <h2 style="font-size: 6rem; font-weight: 900;">Artigos</h2>
+    </catalog-title>
+    <catalog-selection>
+      <button onclick="filterElementsArticle('article-all')">Todos</button>
+      <button onclick="filterElementsArticle('article-design')">Design</button>
+      <button onclick="filterElementsArticle('article-teamwork')">Equipa</button>
+      <button onclick="filterElementsArticle('article-ethics')">Ética</button>
+      <button onclick="filterElementsArticle('article-genai')">Gen AI</button>
+      <button onclick="filterElementsArticle('article-organization')">Organização</button>
+      <button onclick="filterElementsArticle('article-software')">Software</button>
+      <button onclick="filterElementsArticle('article-video')">Vídeo</button>
+    </catalog-selection>
+    <catalog class="article">
+      <!----------------------------------------------------------------------------------------------Software Bending-->
+      <a class="article-software a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item><catalog-item-date-and-time>
+            <div>Escrita em progresso</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Software Bending: Dita as Tuas Regras</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Software</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Anatomy of a Testimonial Video-->
+      <a class="article-video a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--10-Jan-2025-->Tradução em Progresso</div>
+            <div>3 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Anatomy of a Testimonial Video</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Vídeo</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Optimize your workflow-->
+      <a class="article-organization a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--02-Jan-2025-->Tradução em Progresso</div>
+            <div>3 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Otimiza os Teus Processos: Paralelismos</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Organização</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Notion databases-->
+      <a class=" article-organization article-software a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--27-Dec-2024-->Tradução em Progresso</div>
+            <div>6 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Melhora as Tuas Bases de Dados Notion</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Organização</catalog-item-tag>
+            <catalog-item-tag>Software</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------AI or not AI-->
+      <a class="article-ethics article-genai a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--24-Out-2024-->Tradução em Progresso</div>
+            <div>12 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Criativos, É ou Não para Usar AI?<br><br></catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Ética</catalog-item-tag>
+            <catalog-item-tag>Gen AI</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Team Up-->
+      <a class="article-teamwork a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--23-Nov-2023-->Tradução em Progresso</div>
+            <div>4 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Equipa: Uma Experiência Pessoal</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Equipa</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------They dont need a designer-->
+      <a class="article-ethics a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--24-Set-2023-->Tradução em Progresso</div>
+            <div>5 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Hot take: Eles (Provavelmente) Não Precisam de um Designer</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Ética</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------you dont need colors-->
+      <a class="article-design a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div><!--10-Jan-2023-->Tradução em Progresso</div>
+            <div>3 min. leitura</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Não Precisas de Cores para Comunicar</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Design</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+    </catalog>
+  </content>
+
+
   <content>
     <catalog-title>
       <h2>Artigos de Relevância</h2>
@@ -118,6 +331,7 @@
     <a href="porque-a-gaivota.html"><s>Porquê a Gaivota?</s></a>
     <div style="margin-top: auto;">© 2024 david herdeiro. Direitos reservados.</div>
   </footer>
+  <script src="../js/catalog-filter.js"></script>
 </body>
 
 </html>

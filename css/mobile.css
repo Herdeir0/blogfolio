@@ -1,4 +1,4 @@
-@media only screen and (max-width: 740px) {
+@media only screen and (max-width: 769px) {
   /* __ Variables ______________________________________________________________________________________________________________________ */
 
   :root {
@@ -49,9 +49,16 @@
     display: none;
   }
 
+  button {
+    padding: var(--s) var(--s);
+  }
+
   content {
     margin: 100px auto 0px;
+    width: 100%;
     padding: 0px;
+
+    grid-template-columns: 100%;
   }
 
   footer {
@@ -76,6 +83,9 @@
     padding-right: var(--m);
 
     row-gap: var(--xxl);
+
+    font-size: 3rem !important;
+    line-height: 120%;
   }
 
   summary {
@@ -113,6 +123,8 @@
 
   catalog-title h2 {
     width: min-content;
+
+    font-size: 3rem !important;
   }
 
   catalog-selection {
@@ -137,6 +149,8 @@
     column-gap: var(--m);
     row-gap: var(--m);
 
+    padding: 0px var(--m);
+
     width: 100%;
     max-width: 768px;
 
@@ -149,12 +163,14 @@
     padding-left: var(--m);
     padding-right: var(--m);
 
+    grid-column: span 1;
+
     box-sizing: border-box;
   }
 
   catalog-item img {
-    display: none;
-    height: 60px;
+    display: block;
+    height: 100px;
   }
 
   /* __ ARTICLE ________________________________________________________________________________________________________________________________ */
@@ -225,8 +241,7 @@
 
     font-family: var(--anybody);
     font-weight: 700;
-    font-size: 32px;
-    line-height: 140%;
+    font-size: 3rem;
   }
 
   article-text {
@@ -298,6 +313,28 @@
 
     box-sizing: border-box;
   }
+
+  back-to-catalog {
+    display: flex;
+  
+    grid-column-start: 1;
+  
+    font-family: var(--playfair);
+    font-size: var(--text);
+    font-weight: 500;
+  
+    padding: 0px var(--m);
+  
+    margin-bottom: var(--l);
+  }
+
+  /* __ Projects ________________________________________________________________________________________________________________________________ */
+  
+  project-image {
+    display: grid;
+    grid-template-columns:  100%;
+  
+    width: 100%;}
 
   /* __ CV ________________________________________________________________________________________________________________________________ */
 

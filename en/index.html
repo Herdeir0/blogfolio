@@ -33,7 +33,8 @@
     </menu>
   </navbar>
   <content>
-    <hello-message> Oh, hi </hello-message>
+    <hello-message style="font-size: 6rem; font-weight: 900; line-height: normal;"> Oh, Hello
+    </hello-message>
     <summary>
       My name is David and I’m a Communication Designer by education,
       and a Generalist by profession.<br />
@@ -43,24 +44,128 @@
       as the Lead Brand and Communications
       Designer, but looking for new opportunities. I am also very happy to meet you.<br>
       <br>
-      <a href="cv.html"><button>Check my Curriculum Vitae</button></a>
+      <a id="buttonDesktop" href="cv.html"><button>Check my Curriculum Vitae</button></a>
+      <a id="buttonMobile" href="cv.html"><button>Check my CV</button></a>
     </summary>
   </content>
-  <content>
+  <content id="projects-and-demos">
     <catalog-title>
-      <h2>Relevant Articles</h2>
-      <a href="catalog.html"><button>View all</button></a>
+      <h2 style="font-size: 6rem; font-weight: 900;">Projects & Demos</h2>
     </catalog-title>
-    <catalog>
-      <!----------------------------------------------------------------------------------------------Optimize your workflow-->
-      <a class="organization show" href="articles/optimize-your-workflow-get-parallel.html"">
+    <catalog-selection>
+      <button onclick="filterElementsProject('project-all')">All</button>
+      <button onclick="filterElementsProject('project-creativity')">Creativity</button>
+      <button onclick="filterElementsProject('project-events')">Events</button>
+      <button onclick="filterElementsProject('project-graphic-design')">Graphic Design</button>
+      <button onclick="filterElementsProject('project-video')">Video</button>
+    </catalog-selection>
+    <catalog class="project">
+      <!----------------------------------------------------------------------------------------------Social Media-->
+      <a class="project-graphic-design p-show" href="projects/social-media.html">
         <catalog-item>
-          <img src="" style=" background-image: url(../img/get-parallel/get-parallel-cover.png);" />
+          <catalog-item-image>
+            <img src="" style="background-image: url('../img/four-years-of-in-house-design/recap-desktop.jpg');" />
+          </catalog-item-image>
+          <catalog-item-title>Social Media: Make Them Notice You</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Graphic Design</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Events-->
+      <a class="project-events p-show" href="projects/events.html">
+        <catalog-item>
+          <catalog-item-image>
+            <img src=""
+              style="background-image: url('../img/four-years-of-in-house-design/tech-meetup-porto-02-desktop.jpg');" />
+          </catalog-item-image>
+          <catalog-item-title>There's No Advertising Like Events</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Events</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Video-->
+      <a class="project-video p-show" href="projects/video.html">
+        <catalog-item>
+          <catalog-item-image>
+            <img src="" style="background-image: url('../img/four-years-of-in-house-design/video-cover.jpg');" />
+          </catalog-item-image>
+          <catalog-item-title>Video: Both an Artform and a Sales Tool</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Video</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Video-->
+      <a class="project-creativity p-show" href="projects/creativity.html">
+        <catalog-item>
+          <catalog-item-image>
+            <img src=""
+              style="background-image: url('../img/four-years-of-in-house-design/creativity-01-desktop.jpg')" />
+          </catalog-item-image>
+          <catalog-item-title>Create for the Sake of Creating</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Creativity</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+    </catalog>
+  </content>
+  <content id="articles">
+    <catalog-title>
+      <h2 style="font-size: 6rem; font-weight: 900;">Articles</h2>
+    </catalog-title>
+    <catalog-selection>
+      <button onclick="filterElementsArticle('article-all')">All</button>
+      <button onclick="filterElementsArticle('article-design')">Design</button>
+      <button onclick="filterElementsArticle('article-ethics')">Ethics</button>
+      <button onclick="filterElementsArticle('article-genai')">Gen AI</button>
+      <button onclick="filterElementsArticle('article-organization')">Organization</button>
+      <button onclick="filterElementsArticle('article-software')">Software</button>
+      <button onclick="filterElementsArticle('article-teamwork')">Teamwork</button>
+      <button onclick="filterElementsArticle('article-video')">Video</button>
+    </catalog-selection>
+    <catalog class="article">
+      <!----------------------------------------------------------------------------------------------Software Bending-->
+      <a class="article-software a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item><catalog-item-date-and-time>
+            <div>Writing in Progress</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Software Bending: You
+            Make the Rules</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Software</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Anatomy of a Testimonial Video-->
+      <a class="article-video a-show" href="articles/anatomy-of-a-testimonial-video.html">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div>2025 Jan. 10</div>
+            <div>3 min. read</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Anatomy of a Testimonial Video</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Video</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Optimize your workflow-->
+      <a class="article-organization a-show" href="articles/optimize-your-workflow-get-parallel.html"">
+        <catalog-item>
       <catalog-item-date-and-time>
         <div>2025 Jan. 02</div>
         <div>3 min. read</div>
       </catalog-item-date-and-time>
-      <catalog-item-title>Optimize your Workflow: Get parallel</catalog-item-title>
+      <catalog-item-title>Optimize Your Workflow: Get Parallel</catalog-item-title>
       <br>
       <div>
         <catalog-item-tag>Organization</catalog-item-tag>
@@ -68,14 +173,13 @@
       </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------Notion databases-->
-      <a class="organization software show" href="articles/think-your-notion-databases-ahead.html">
+      <a class=" article-organization article-software a-show" href="articles/think-your-notion-databases-ahead.html">
         <catalog-item>
-          <img src="" style="background-image: url(../img/notion-databases/notion-logomark.jpg);" />
           <catalog-item-date-and-time>
             <div>2024 Dec. 27</div>
             <div>6 min. read</div>
           </catalog-item-date-and-time>
-          <catalog-item-title>Think your Notion databases ahead</catalog-item-title>
+          <catalog-item-title>Think Your Notion Databases Ahead<br><br></catalog-item-title>
           <br>
           <div>
             <catalog-item-tag>Organization</catalog-item-tag>
@@ -84,14 +188,13 @@
         </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------AI or not AI-->
-      <a class="ethics genai show" href="../en/articles/creatives-to-ai-or-not-to-ai.html">
+      <a class="article-ethics article-genai a-show" href="../en/articles/creatives-to-ai-or-not-to-ai.html">
         <catalog-item>
-          <img src="" style="background-image: url(../img/to-ai-or-not/to-ai-or-not-cover.webp);" />
           <catalog-item-date-and-time>
             <div>2024 Oct. 24</div>
             <div>12 min. read</div>
           </catalog-item-date-and-time>
-          <catalog-item-title>Creatives, to AI or not to AI?</catalog-item-title>
+          <catalog-item-title>Creatives, to AI or Not to AI?<br><br></catalog-item-title>
           <br>
           <div>
             <catalog-item-tag>Ethics</catalog-item-tag>
@@ -99,11 +202,56 @@
           </div>
         </catalog-item>
       </a>
+      <!----------------------------------------------------------------------------------------------Team Up-->
+      <a class="article-teamwork a-show" href="../en/articles/team-up-a-personal-exprience.html">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div>2023 Nov. 23</div>
+            <div>4 min. read</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Team Up: A Personal Experience</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Teamwork</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------They dont need a designer-->
+      <a class="article-ethics a-show" href="../en/articles/hot-take-they-probably-dont-need-a-designer.html">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div>2023 Sep. 24</div>
+            <div>5 min. read</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>Hot take: They (Probably) Don't Need a Designer</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Ethics</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------you dont need colors-->
+      <a class="article-design a-show" href="../en/articles/you-dont-need-colors-to-communicate.html">
+        <catalog-item>
+          <catalog-item-date-and-time>
+            <div>2023 Jan. 10</div>
+            <div>3 min. read</div>
+          </catalog-item-date-and-time>
+          <catalog-item-title>You Don't Need Colors to Communicate</catalog-item-title>
+          <br>
+          <div>
+            <catalog-item-tag>Design</catalog-item-tag>
+          </div>
+        </catalog-item>
+      </a>
+    </catalog>
   </content>
   <footer>
     <a href="why-the-seagull.html"><s>Why the Seagull?</s></a>
     © 2024 David Herdeiro. All Rights Reserved.<br />
   </footer>
+
+  <script src="../js/catalog-filter.js"></script>
 </body>
 
 </html>
