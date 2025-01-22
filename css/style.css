@@ -163,9 +163,10 @@ content {
 
   width: calc(100% - var(--m));
   max-width: 1240px;
+  /* min-height: 100vh; */
 
   padding: 0px var(--m);
-  margin: 140px auto 0px;
+  margin: 260px auto 0px;
 
   font-family: var(--playfair);
 
@@ -300,6 +301,11 @@ menu button {
 }
 
 /* __ Hello Message ________________________________________________________________________________________________________________________________ */
+
+/* message-fix {
+  grid-column: span 12;
+  margin: auto 0px;
+} */
 
 hello-message {
   grid-column-start: 1;
