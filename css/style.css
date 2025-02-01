@@ -507,6 +507,9 @@ article-header div {
 
 back-to-catalog {
   display: flex;
+  flex-direction: column;
+
+  row-gap: var(--xs);
 
   grid-column-start: 3;
   grid-column-end: 11;
