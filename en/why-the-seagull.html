@@ -7,6 +7,7 @@
   <title>David Herdeiro</title>
 
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/text-and-variables.css" />
   <link rel="stylesheet" href="../css/mobile.css" />
   <link rel="stylesheet" href="../css/tablet.css" />
 
@@ -14,34 +15,31 @@
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
   </style>
 </head>
 
 <body>
   <navbar>
-    <a href="index.html">
-      <logotype><img src="../img/svg/seagull.svg" />
+    <a href="../index.html">
+      <logotype><img src="../img/svg/seagull-modern-positive.svg" alt="logotype" />
         <t>David Herdeiro</t>
       </logotype>
     </a>
     <menu>
-      <text>en/<a href="../pt/porque-a-gaivota.html"><s>pt</s></a></text>
-      <a id="buttonDesktop" href="contact.html"><button>Let's talk</button></a>
-      <a id="buttonMobile" href="contact.html"><button>Chat</button></a>
+      <a id="buttonDesktop" href="contact.html"><button class="btn-secundary">Let's talk</button></a>
+      <a id="buttonMobile" href="contact.html"><button class="btn-secundary">Chat</button></a>
       <a id="buttonDesktop" href="cv.html"><button>Curriculum</button></a>
       <a id="buttonMobile" href="cv.html"><button>My CV</button></a>
     </menu>
   </navbar>
   <content>
-    <hello-message>Why the
-      <img src="../img/svg/seagull.svg" style="width: auto; height: var(--text)" />?</hello-message>
-    <summary>
+    <article-title id="buttonDesktop">Why the Seagull?</article-title>
+    <article-title id="buttonMobile">Why the Seagull?</article-title>
+    <article-text>
       Like a seagull that flights south during the winter, I too feel like I'm
       migrating from an experience to another.<br />
-    </summary>
-  </content>
-  <content>
-    <article-text>
+      <br>
       2024 was the year for new experiences.<br>
       <br>
       I started <a href="https://www.instagram.com/dialogos.de.design"><s>Diálogos de Design</s></a> with some friends,
@@ -56,8 +54,9 @@
       developing this website, which proved to be a nice experience that thaught me how to deploy a simple website, and
       pushed me on improving my frontend skills.<br>
       <br>
-      And now, in 2025, I'm looking for a new job experience.
+      And now, in 2025, I start a new journey, a new migration.
     </article-text>
+    
   </content>
   <footer>
     © 2025 David Herdeiro. All Rights Reserved.<br />

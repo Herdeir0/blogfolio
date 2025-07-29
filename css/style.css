@@ -131,7 +131,7 @@ footer div {
 }
 
 #buttonDesktop {
-  display: block;
+  display: flex;
 }
 
 #buttonMobile {
@@ -447,6 +447,8 @@ article-header {
   height: auto;
   padding: 0px var(--xs);
 
+  justify-content: end;
+
   box-sizing: border-box;
 }
 
@@ -519,8 +521,10 @@ article-title {
 }
 
 .art-title {
-  display: inline-block;
+  display: block;
   text-align: left;
+
+  max-width: fit-content;
 }
 
 article-text {
