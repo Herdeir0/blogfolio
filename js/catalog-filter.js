@@ -1,6 +1,6 @@
 function filterElementsArticle(selectedClass) {
     // Get all elements inside the .items container
-    const allItems = document.querySelectorAll("catalog.article a");
+    const allItems = document.querySelectorAll("catalog.articles a");
   
     // Loop through each item
     allItems.forEach(item => {

@@ -1,0 +1,136 @@
+/* __ Variables ______________________________________________________________________________________________________________________ */
+
+:root {
+  /* Colors */
+  --primary: #181818;
+  --primary-active: #5A5A5A;
+  --primary-disabled: #BCBCBC;
+  --cloud: #fcfcfc;
+  --cloud-dark: #e4e4e4;
+
+  /* Effects */
+  --shadow-normal: 0px 0px var(--xs) rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0px var(--xxs) var(--s) rgba(0, 0, 0, 0.1);
+
+  /* General Sizes */
+  --xxs: 4px;
+  --xs: 8px;
+  --s: 12px;
+  --m: 16px;
+  --l: 20px;
+  --xl: 32px;
+  --xxl: 48px;
+
+  /* Text Sizes */
+  --text-caption: 14px;
+  --text: 20px;
+  --text-h3: 32px;
+  --text-h2: 38px;
+  --text-h1: 46px;
+
+  /* Typography */
+  --anybody: "Cabin", sans-serif;
+  --playfair: "Newsreader", serif;
+}
+
+/* __ Text ______________________________________________________________________________________________________________________ */
+
+h1 {
+  font-family: var(--anybody);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  line-height: 120%;
+
+  margin: 0px;
+}
+
+h2 {
+  font-family: var(--anybody);
+  font-size: var(--text-h2);
+  font-weight: 700;
+  line-height: 120%;
+
+  margin: 0px;
+}
+
+h3 {
+  font-family: var(--anybody);
+  font-size: var(--text-h3);
+  line-height: 120%;
+
+  margin: 0px;
+}
+
+text {
+  font-family: var(--playfair);
+  font-size: var(--text);
+  line-height: 140%;
+  font-weight: bold !important;
+  margin: 0px;
+}
+
+text-caption {
+  font-family: var(--playfair);
+  font-size: var(--text-caption);
+  line-height: 160%;
+
+  grid-column: span 3;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--primary-active);
+}
+
+s {
+  text-decoration: underline;
+  text-decoration-line: 2px;
+  -moz-text-decoration-line: 2px;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
+  color: var(--primary);
+}
+
+logotype t {
+  line-height: 16px;
+
+  font-family: var(--anybody);
+  font-size: 24px;
+}
+
+/* __ Hello Message ________________________________________________________________________________________________________________________________ */
+
+hello-message {
+  grid-column-start: 1;
+  grid-column-end: 13;
+  padding-left: var(--xs);
+  padding-right: var(--xs);
+  padding-bottom: 96px;
+
+  font-family: var(--anybody);
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+summary {
+  grid-column-start: 1;
+  grid-column-end: 9;
+  padding-left: var(--xs);
+  padding-right: var(--xs);
+
+  font-size: var(--text);
+  font-weight: 400;
+  line-height: 140%;
+}
+
+/* __ Filter Colors ________________________________________________________________________________________________________________________________ */
+/* 
+.fltr-red {
+  box-shadow: 6px 6px 0px red !important;
+} */

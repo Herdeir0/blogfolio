@@ -6,60 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Herdeiro</title>
 
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/mobile.css" />
-  <link rel="stylesheet" href="../css/tablet.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/text-and-variables.css" />
+  <link rel="stylesheet" href="../../css/mobile.css" />
+  <link rel="stylesheet" href="../../css/tablet.css" />
 
   <link rel="icon" type="image/x-icon" href="../img/svg/seagull-white.svg" />
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
   </style>
 </head>
 
 <body>
   <navbar>
-    <a href="index.html">
-      <logotype><img src="../img/svg/seagull.svg" />
+    <a href="../index.html">
+      <logotype><img src="../../img/svg/seagull-modern-positive.svg" alt="logotype" />
         <t>David Herdeiro</t>
       </logotype>
     </a>
     <menu>
-      <text>en/<a href="../pt/cv.html"><s>pt</s></a></text>
-      <a id="buttonDesktop" href="contact.html"><button>Let's talk</button></a>
-      <a id="buttonMobile" href="contact.html"><button>Chat</button></a>
+      <a id="buttonDesktop" href="contact.html"><button class="btn-secundary">Let's talk</button></a>
+      <a id="buttonMobile" href="contact.html"><button class="btn-secundary">Chat</button></a>
       <a id="buttonDesktop" href="cv.html"><button>Curriculum</button></a>
       <a id="buttonMobile" href="cv.html"><button>My CV</button></a>
     </menu>
   </navbar>
   <content>
-    <hello-message> Get it printed </hello-message>
-    <summary>
-      <a href="../docs/david-herdeiro-curriculum-vitae-en.pdf">
-        <button style="line-height: 140%; display: flex; text-align: left;">
-          <div style="margin: auto var(--s) auto 0px;">↧</div>
-          <div>Download my Print-Ready Curriculum</div>
-        </button>
-      </a>
-    </summary>
-  </content>
-  <content>
-    <hello-message>Let's chat</hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Let's chat</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       Send me an email:<br />
       <a
         href="mailto:david.herdeiro@gmail.com?subject=Oh%20hi%20there,%20let's%20talk"><s>david.herdeiro@gmail.com</s></a><br />
       <br />
       Or a LinkedIn message:<br />
-      <a href="https://www.linkedin.com/in/david-herdeiro"><s>linkedin.com/david-herdeiro</s></a><br />
-      <br />
-      Or if you want to be faster, book a meeting directly with me:<br />
-      <a href="https://calendar.app.google/CM8xV9gFqFZ5eUGT9"><s>calendar.app.google</s></a>
+      <a href="https://www.linkedin.com/in/david-herdeiro"><s>linkedin.com/david-herdeiro</s></a>
     </summary>
   </content>
   <content>
-    <hello-message>Career</hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Career</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
+      2025 - Present<br>
+      Webdesigner at <a href="https://www.doutorfinancas.pt"><s>Doutor Finanças, Lda</s></a>, Portugal<br />
+      <cv-tags-container>
+        <cv-tags>Communication Design</cv-tags>
+        <cv-tags>Editorial Design</cv-tags>
+      </cv-tags-container>
       2020 - 2025<br>
       Lead of Brand and Communications Design at <a href="https://www.turbinekreuzberg.com"><s>Turbine Kreuzberg
           GmbH</s></a>, Germany<br />
@@ -106,15 +99,15 @@
     </summary>
   </content>
   <content>
-    <hello-message>Education</hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Education</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       2016 - 2019<br>
       Bachelor’s degree in Communication Design at University of Algarve, Portugal
     </summary>
   </content>
   <content>
-    <hello-message>Skills (aka why you'd hire me)</hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Skills (aka why you'd hire me)</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       <cv-tags-container style="margin: 0px !important;">
         <cv-tags>Organization</cv-tags>
         <cv-tags>Flexibility</cv-tags>
@@ -126,8 +119,8 @@
     </summary>
   </content>
   <content>
-    <hello-message>Software</hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Software</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       <cv-tags-container style="margin: 0px !important;">
         <cv-tags>Adobe Suite</cv-tags>
         <cv-tags>Affinity Bundle *</cv-tags>
@@ -143,8 +136,8 @@
     </summary>
   </content>
   <content>
-    <hello-message>Previous relevant job tasks</hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Previous relevant job tasks</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       Static and animated social media posts, as well as creation and maintenance of templates to ease and accelerate
       content output;<br>
       <br>
@@ -170,10 +163,8 @@
     </summary>
   </content>
   <content>
-    <hello-message>Extra bits of info about me</hello-message>
-    <summary>
-      Looking for a Fully Remote or Hybrid position<br>
-      <br>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);">Extra bits of info about me</hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       I am a proud generalist and live by the slogan “Designer wanna be Rocket Engineer”<br>
       <br>
       Did you know that I’m currently building a digital camera with interchangeable lenses?<br>
@@ -182,8 +173,8 @@
     </summary>
   </content>
   <content>
-    <hello-message> More insights </hello-message>
-    <summary>
+    <hello-message style="grid-column: span 4 !important; font-size: var(--xxl);"> More insights </hello-message>
+    <summary style="grid-column-start: 5 !important; grid-column-end: 13 !important;">
       I do have recommendation letters upon request!<br>
       <a
         href="mailto:david.herdeiro@gmail.com?subject=Recommendation%20Letters%20Request&body=Hello%20and%20thank%20you%20for%20your%20interest,%20please%20fill%20the%20requested%20fields%20before%20sending%20this%20email.%0D%0A%0D%0AName:%0D%0A%0D%0ARole:%0D%0A%0D%0ACompany%20(if%20applicable):">
