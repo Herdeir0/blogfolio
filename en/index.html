@@ -319,6 +319,14 @@
   </footer>
 
   <script src="../js/catalog-filter.js"></script>
+  <script>
+  fetch('https://visits.david-herdeiro.workers.dev')
+    .then(response => response.text())
+    .then(data => {
+      console.log('Visit count updated:', data);
+    })
+    .catch(err => console.error('Visit tracking failed:', err));
+</script>
 </body>
 
 </html>
