@@ -598,7 +598,7 @@ article-image {
   overflow: hidden !important;
 }
 
-article-image img {
+article-image img,video {
   display: flex;
 
   border-radius: var(--xs);

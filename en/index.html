@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../css/mobile.css" />
   <link rel="stylesheet" href="../css/tablet.css" />
 
-  <link rel="icon" type="image/x-icon" href="../img/svg/seagull-white.svg" />
+  <link rel="icon" type="image/x-icon" href="../img/svg/seagull-modern.svg" />
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
@@ -122,6 +122,7 @@
       <button onclick="filterElementsArticle('article-community')">Community</button>
       <button onclick="filterElementsArticle('article-design')">Design</button>
       <button onclick="filterElementsArticle('article-ethics')">Ethics</button>
+      <button onclick="filterElementsArticle('article-exploration')">Exploration</button>
       <button onclick="filterElementsArticle('article-genai')">Gen AI</button>
       <button onclick="filterElementsArticle('article-organization')">Organization</button>
       <button onclick="filterElementsArticle('article-software')">Software</button>
@@ -129,14 +130,32 @@
       <button onclick="filterElementsArticle('article-video')">Video</button>
     </catalog-selection>
     <catalog class="articles">
-      <!----------------------------------------------------------------------------------------------Software Bending-->
-      <a class="article-software a-show" style="pointer-events: none; opacity: 0.3;">
+      <!----------------------------------------------------------------------------------------------Image Cryptography-->
+      <a class="article-exploration a-show" style="pointer-events: none; opacity: 0.3;">
         <catalog-item>
           <catalog-item-img style="background-image: url('../img/four-years-of-in-house-design/creativity-01-desktop.jpg')"/></catalog-item-img>
           <div>
             <div>
               <catalog-item-date-and-time>
                 <div>Writing in Progress</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Thought Exercise: Exploring Image Cryptography</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Exploration</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Software Bending-->
+      <a class="article-software a-show" href="articles/software-bending.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('../img/software-bending/software-bending-cover.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2025 Aug. 08</div>
+                <div>2 min. read</div>
               </catalog-item-date-and-time>
               <catalog-item-title>Software Bending</catalog-item-title>
             </div>
@@ -147,7 +166,7 @@
         </catalog-item>
       </a>
       <!----------------------------------------------------------------------------------------------Apple can we fix this-->
-      <a class="article-design a-show" href="articles/apple-can-we-fix-this.html">
+      <a class="article-design article-exploration a-show" href="articles/apple-can-we-fix-this.html">
         <catalog-item>
           <catalog-item-img style="background-image: url('../img/apple-fix-this/apple-photo-by-mali-maeder.webp')" /></catalog-item-img>
           <div>
@@ -160,6 +179,7 @@
             </div>
             <tags>
               <catalog-item-tag>Design</catalog-item-tag>
+              <catalog-item-tag>Exploration</catalog-item-tag>
             </tags>
           </div>
         </catalog-item>
@@ -319,14 +339,6 @@
   </footer>
 
   <script src="../js/catalog-filter.js"></script>
-  <script>
-  fetch('https://visits.david-herdeiro.workers.dev')
-    .then(response => response.text())
-    .then(data => {
-      console.log('Visit count updated:', data);
-    })
-    .catch(err => console.error('Visit tracking failed:', err));
-</script>
 </body>
 
 </html>

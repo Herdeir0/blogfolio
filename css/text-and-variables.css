@@ -96,6 +96,10 @@ s {
   color: var(--primary);
 }
 
+italic {
+  font-style: italic;
+}
+
 logotype t {
   line-height: 16px;
 

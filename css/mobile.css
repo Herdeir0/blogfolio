@@ -307,7 +307,7 @@
     padding: var(--m) var(--m);
   }
 
-  article-image img {
+  article-image img,video {
     display: flex;
 
     grid-column-start: 1;
