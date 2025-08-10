@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Map Shopping List — Single File</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#6b7280; --accent:#0b74ff;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#111}
+    .app{display:flex;height:100vh;gap:12px;padding:12px;box-sizing:border-box}
+    .sidebar{width:320px;background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(20,20,40,0.06);display:flex;flex-direction:column;gap:8px}
+    h1{font-size:16px;margin:0 0 8px 0}
+    .toolbar{display:flex;gap:6px;flex-wrap:wrap}
+    button{background:#111;color:#fff;border:0;padding:8px 10px;border-radius:8px;font-size:13px;cursor:pointer}
+    button.ghost{background:transparent;color:var(--muted);border:1px solid #e6e9ef}
+    .board-wrap{flex:1;display:flex;flex-direction:column}
+    .board-area{flex:1;background:linear-gradient(180deg,#ffffff 0%, #fbfdff 100%);border-radius:12px;box-shadow:inset 0 0 0 1px rgba(15,23,42,0.03);position:relative;overflow:auto;padding:20px}
+
+    /* big square */
+    #board{width:1200px;height:1200px;background:#fff;border:1px solid #e6eefb;position:relative;margin:0 auto;box-shadow:0 8px 24px rgba(11,20,50,0.04);}
+    .grid{background-image:linear-gradient(transparent 23px, rgba(0,0,0,0.02) 24px);background-size:24px 24px}
+
+    .rect{position:absolute;border:2px dashed rgba(11,20,50,0.12);background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.9));border-radius:8px;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column}
+    .rect .title{background:rgba(250,250,255,0.9);padding:6px 8px;font-weight:600;cursor:text;border-bottom:1px solid rgba(11,20,50,0.03);display:flex;align-items:center;justify-content:space-between}
+    .rect .title input{border:0;background:transparent;font-weight:600;width:100%}
+    .rect .content{padding:8px;flex:1;overflow:auto}
+    .resize-handle{width:12px;height:12px;background:var(--accent);position:absolute;right:4px;bottom:4px;border-radius:3px;cursor:se-resize}
+    .selected{box-shadow:0 6px 18px rgba(11,20,50,0.12);border-style:solid;border-color:var(--accent)}
+
+    .list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+    .list li{display:flex;gap:8px;align-items:center}
+    .list li input[type="text"]{flex:1;border:0;background:transparent}
+
+    .footer{margin-top:auto;font-size:12px;color:var(--muted)}
+    .small{font-size:12px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:900px){.sidebar{width:100%;order:2}.app{flex-direction:column}.board-wrap{order:1}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="sidebar">
+      <h1>Map Shopping List</h1>
+      <div class="toolbar">
+        <button id="btnNew">+ Add Area</button>
+        <button id="btnAddList" class="ghost">+ Add list to selected</button>
+        <button id="btnDelete" class="ghost">Delete selected</button>
+        <button id="btnToggleGrid" class="ghost">Toggle grid</button>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+        <label class="small">Zoom</label>
+        <input id="zoom" type="range" min="25" max="200" value="100">
+        <span id="zoomVal" class="small">100%</span>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button id="btnSave" class="ghost">Save (local)</button>
+        <button id="btnExport">Export JSON</button>
+        <label for="fileImport" class="ghost" style="display:inline-block;padding:8px 10px;border-radius:8px;cursor:pointer">Import</label>
+        <input id="fileImport" type="file" accept="application/json" style="display:none">
+      </div>
+
+      <div style="margin-top:12px">
+        <strong>Instructions</strong>
+        <p class="small">Add areas (rectangles), drag to move, drag handle to resize. Double-click title to rename. Use <em>Add list</em> to insert a checklist inside the selected area. Check items while shopping. Your layout is saved locally.</p>
+      </div>
+
+      <div class="footer small">Tip: export to share or keep backups.</div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="board-area">
+        <div id="board" class="grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <template id="rect-template">
+    <div class="rect">
+      <div class="title"><span class="label">Area</span></div>
+      <div class="content"></div>
+      <div class="resize-handle"></div>
+    </div>
+  </template>
+
+  <script>
+    // -- Simple single-file app --
+    const board = document.getElementById('board');
+    const tpl = document.getElementById('rect-template');
+    let state = {areas:[], selected:null};
+    const STORAGE_KEY = 'map-shopping-list-v1';
+
+    // helpers
+    function uid(){return Math.random().toString(36).slice(2,9)}
+    function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+
+    // create a new area with defaults
+    function createArea(x=50,y=50,w=240,h=160,title='Area'){
+      const id = uid();
+      const area = {id,x,y,w,h,title,items:[]};
+      state.areas.push(area);
+      renderArea(area);
+      selectArea(id);
+      saveLocal();
+      return area;
+    }
+
+    function renderAll(){
+      board.innerHTML='';
+      state.areas.forEach(renderArea);
+    }
+
+    function renderArea(area){
+      // if it exists, remove old
+      const old = board.querySelector(`[data-id="${area.id}"]`);
+      if(old) old.remove();
+      const node = tpl.content.firstElementChild.cloneNode(true);
+      node.style.left = area.x + 'px';
+      node.style.top = area.y + 'px';
+      node.style.width = area.w + 'px';
+      node.style.height = area.h + 'px';
+      node.dataset.id = area.id;
+      node.querySelector('.label').textContent = area.title;
+
+      // title editing
+      const titleEl = node.querySelector('.title');
+      titleEl.addEventListener('dblclick', ()=>{
+        startEditTitle(area, node);
+      });
+
+      // select on click
+      node.addEventListener('pointerdown', (e)=>{
+        if(e.target.classList.contains('resize-handle') || e.button!==0) return; // resize handled separately
+        selectArea(area.id);
+        startDrag(node, area, e);
+      });
+
+      // resize
+      const handle = node.querySelector('.resize-handle');
+      handle.addEventListener('pointerdown', (e)=>{e.stopPropagation(); startResize(node, area, e)});
+
+      // content -> lists
+      const content = node.querySelector('.content');
+      content.innerHTML='';
+      if(area.items && area.items.length){
+        const ul = document.createElement('ul'); ul.className='list';
+        area.items.forEach((it,i)=>{
+          const li = makeListItem(area, i);
+          ul.appendChild(li);
+        });
+        content.appendChild(ul);
+      }
+
+      board.appendChild(node);
+      refreshSelectionStyles();
+    }
+
+    function startEditTitle(area, node){
+      const titleEl = node.querySelector('.title');
+      const label = titleEl.querySelector('.label');
+      const input = document.createElement('input');
+      input.value = area.title; input.autofocus=true;
+      titleEl.replaceChild(input,label);
+      input.select();
+      input.addEventListener('blur', ()=>{finish()});
+      input.addEventListener('keydown', (e)=>{if(e.key==='Enter') input.blur();});
+      function finish(){area.title = input.value||'Area'; renderArea(area); saveLocal();}
+    }
+
+    function makeListItem(area, index){
+      const item = area.items[index];
+      const li = document.createElement('li');
+      const cb = document.createElement('input'); cb.type='checkbox'; cb.checked = !!item.checked;
+      cb.addEventListener('change', ()=>{item.checked = cb.checked; saveLocal();});
+      const txt = document.createElement('input'); txt.type='text'; txt.value = item.text || '';
+      txt.addEventListener('input', ()=>{item.text = txt.value; saveLocal();});
+      const del = document.createElement('button'); del.textContent='✕'; del.title='Delete item'; del.style.border='0'; del.style.background='transparent'; del.style.cursor='pointer';
+      del.addEventListener('click', ()=>{area.items.splice(index,1); renderArea(area); saveLocal();});
+      li.appendChild(cb); li.appendChild(txt); li.appendChild(del);
+      return li;
+    }
+
+    // add a blank item to selected area
+    function addListToSelected(){
+      const sel = getSelectedArea();
+      if(!sel) return alert('Select an area first');
+      sel.items.push({text:'',checked:false});
+      renderArea(sel);
+      saveLocal();
+    }
+
+    // selection
+    function selectArea(id){ state.selected = id; refreshSelectionStyles(); }
+    function getSelectedArea(){ return state.areas.find(a=>a.id===state.selected); }
+    function refreshSelectionStyles(){
+      board.querySelectorAll('.rect').forEach(el=>{
+        el.classList.toggle('selected', el.dataset.id === state.selected);
+      });
+    }
+
+    // dragging
+    function startDrag(node, area, e){
+      e.preventDefault(); node.setPointerCapture(e.pointerId);
+      const startX = e.clientX, startY = e.clientY;
+      const baseX = area.x, baseY = area.y;
+      function move(ev){
+        const dx = ev.clientX - startX, dy = ev.clientY - startY;
+        area.x = clamp(baseX + dx, 0, board.clientWidth - area.w);
+        area.y = clamp(baseY + dy, 0, board.clientHeight - area.h);
+        node.style.left = area.x + 'px'; node.style.top = area.y + 'px';
+      }
+      function up(ev){
+        node.releasePointerCapture(e.pointerId);
+        document.removeEventListener('pointermove', move);
+        document.removeEventListener('pointerup', up);
+        saveLocal();
+      }
+      document.addEventListener('pointermove', move);
+      document.addEventListener('pointerup', up);
+    }
+
+    // resizing
+    function startResize(node, area, e){
+      e.preventDefault(); node.setPointerCapture(e.pointerId);
+      const startX = e.clientX, startY = e.clientY;
+      const baseW = area.w, baseH = area.h;
+      function move(ev){
+        const dx = ev.clientX - startX, dy = ev.clientY - startY;
+        area.w = clamp(baseW + dx, 80, board.clientWidth - area.x);
+        area.h = clamp(baseH + dy, 60, board.clientHeight - area.y);
+        node.style.width = area.w + 'px'; node.style.height = area.h + 'px';
+      }
+      function up(ev){
+        node.releasePointerCapture(e.pointerId);
+        document.removeEventListener('pointermove', move);
+        document.removeEventListener('pointerup', up);
+        saveLocal();
+      }
+      document.addEventListener('pointermove', move);
+      document.addEventListener('pointerup', up);
+    }
+
+    // deletion
+    function deleteSelected(){
+      if(!state.selected) return alert('No selection');
+      state.areas = state.areas.filter(a=>a.id !== state.selected);
+      state.selected = null; renderAll(); saveLocal();
+    }
+
+    // persistence
+    function saveLocal(){
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){console.warn('save failed',e)}
+    }
+    function loadLocal(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(raw){ const parsed = JSON.parse(raw); if(parsed.areas) state = parsed; }
+      }catch(e){console.warn('load failed',e)}
+      renderAll();
+    }
+
+    // export/import
+    function exportJSON(){
+      const data = JSON.stringify(state, null, 2);
+      const blob = new Blob([data], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download='map-shopping-list.json'; a.click();
+      URL.revokeObjectURL(url);
+    }
+    function importJSON(file){
+      const reader = new FileReader();
+      reader.onload = e=>{
+        try{ const parsed = JSON.parse(e.target.result); if(parsed.areas) {state = parsed; state.selected = null; renderAll(); saveLocal(); alert('Imported');} else alert('Invalid file'); }
+        catch(err){alert('Could not parse JSON')}
+      };
+      reader.readAsText(file);
+    }
+
+    // UI hooks
+    document.getElementById('btnNew').addEventListener('click', ()=>createArea(60,60,260,160,'New Area'));
+    document.getElementById('btnAddList').addEventListener('click', ()=>addListToSelected());
+    document.getElementById('btnDelete').addEventListener('click', ()=>{ if(confirm('Delete selected area?')) deleteSelected(); });
+    document.getElementById('btnToggleGrid').addEventListener('click', ()=>{ board.classList.toggle('grid'); });
+    document.getElementById('btnSave').addEventListener('click', ()=>{ saveLocal(); alert('Saved locally'); });
+    document.getElementById('btnExport').addEventListener('click', exportJSON);
+    document.getElementById('fileImport').addEventListener('change', (e)=>{ if(e.target.files[0]) importJSON(e.target.files[0]); e.target.value=''; });
+
+    // zoom
+    const zoom = document.getElementById('zoom'); const zoomVal = document.getElementById('zoomVal');
+    zoom.addEventListener('input', ()=>{ const v = zoom.value; board.style.transform = `scale(${v/100})`; board.style.transformOrigin = 'top left'; zoomVal.textContent = v + '%'; });
+
+    // clicking outside to deselect
+    document.addEventListener('pointerdown', (e)=>{
+      if(!e.target.closest('.rect')){ state.selected = null; refreshSelectionStyles(); }
+    });
+
+    // double-click board to add area
+    board.addEventListener('dblclick', (e)=>{
+      const rect = board.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / (board.getBoundingClientRect().width / board.clientWidth || 1);
+      const y = (e.clientY - rect.top) / (board.getBoundingClientRect().height / board.clientHeight || 1);
+      createArea(clamp(x-120,0,board.clientWidth-100), clamp(y-60,0,board.clientHeight-60), 240,160,'New Area');
+    });
+
+    // keyboard shortcuts
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Delete') deleteSelected();
+      if((e.ctrlKey||e.metaKey) && e.key==='s'){ e.preventDefault(); saveLocal(); alert('Saved locally'); }
+    });
+
+    // small helper to render initial default if empty
+    loadLocal();
+    if(state.areas.length===0){ createArea(80,80,280,180,'Produce'); createArea(420,80,260,180,'Dairy'); }
+
+  </script>
+</body>
+</html>
