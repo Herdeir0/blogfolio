@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Shopping Map</title>
+<title>Dynamic Map Shopping List</title>
 <style>
   body, html {
     margin: 0;
@@ -37,14 +37,14 @@
     padding: 4px 8px 24px 8px;
     transition: border-color 0.3s ease;
     user-select: none;
+    
+    min-width: 160px;
+    min-height: 260px;
 
-min-width: 160px;
-min-height: 260px;
-
-box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
   }
   .rect.active {
-    border-color: #007bff;
+    border: 2px solid #007bff;
   }
   .title {
     display: flex;
@@ -81,7 +81,7 @@ box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
     list-style: none;
     padding: 0;
     margin: 20px 0 60px 0;
-height: 100%;
+    height: 100%;
     max-height: -webkit-fill-available;
     overflow-y: auto;
   }
@@ -96,7 +96,7 @@ height: 100%;
   }
   ul li input[type=text] {
     flex-grow: 1;
-    border: 0px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 4px;
     padding: 2px 4px;
     outline: none;
@@ -104,7 +104,7 @@ height: 100%;
     user-select: text;
   }
   ul li input[type=text]:focus {
-    border: 1px solid #007bff;
+    border-color: #007bff;
     background: #e7f1ff;
   }
   ul li.checked input[type=text] {
@@ -182,7 +182,7 @@ height: 100%;
     background: white;
     border: 1px solid #ccc;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
     z-index: 1000;
   }
   #exportImportWrapper {
@@ -196,8 +196,9 @@ height: 100%;
     z-index: 1001;
     display: flex;
     gap: 10px;
+    align-items: center;
   }
-  button.export-btn, button.import-btn {
+  button.export-btn, button.import-btn, button.edit-mode-btn {
     background: #007bff;
     color: white;
     border: none;
@@ -206,10 +207,13 @@ height: 100%;
     cursor: pointer;
     user-select: none;
     font-size: 14px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
   }
-  button.export-btn:hover, button.import-btn:hover {
+  button.export-btn:hover, button.import-btn:hover, button.edit-mode-btn:hover {
     background: #0056b3;
+  }
+  button.edit-mode-btn.active {
+    background: #28a745;
   }
 </style>
 </head>
@@ -223,6 +227,7 @@ height: 100%;
 <div id="exportImportWrapper">
   <button class="export-btn" title="Export Map">Export</button>
   <button class="import-btn" title="Import Map">Import</button>
+  <button class="edit-mode-btn" id="toggleEditBtn" title="Toggle Shop Edit Mode">Shop Edit: Off</button>
   <input type="file" id="importFile" style="display:none" accept="application/json" />
 </div>
 
@@ -234,17 +239,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnNew = document.getElementById('btnNew');
   const btnExport = document.querySelector('.export-btn');
   const btnImport = document.querySelector('.import-btn');
+  const btnToggleEdit = document.getElementById('toggleEditBtn');
   const importFile = document.getElementById('importFile');
   const minimapCanvas = document.getElementById('minimap');
   const ctx = minimapCanvas.getContext('2d');
 
   let areas = [];
   let activeArea = null;
+  let shopEditMode = false; // New: only when true can user move/resize areas
 
   // Utility: snap to 20x20 grid
   function snapToGrid(value, gridSize = 20) {
     return Math.round(value / gridSize) * gridSize;
   }
+
+  // Toggle Shop Edit Mode
+  function setShopEditMode(on) {
+    shopEditMode = !!on;
+    document.body.classList.toggle('shop-edit-mode', shopEditMode);
+    btnToggleEdit.classList.toggle('active', shopEditMode);
+    btnToggleEdit.textContent = shopEditMode ? 'Shop Edit: ON' : 'Shop Edit: Off';
+  }
+
+  btnToggleEdit.addEventListener('click', () => {
+    setShopEditMode(!shopEditMode);
+  });
 
   // Add a new area
   function addArea(x = 20, y = 20, title = 'Area', items = []) {
@@ -307,8 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     board.appendChild(area);
     areas.push(area);
+    expandBoardToFit(area);
+    updateMinimap();
 
-    // Activate area on click
+    // Selection
     area.addEventListener('mousedown', (e) => {
       e.stopPropagation();
       setActiveArea(area);
@@ -358,15 +379,11 @@ document.addEventListener('DOMContentLoaded', () => {
       removeArea(area);
     });
 
-    // Enable resizing only if area is active
+    // Enable resizing only if shopEditMode is on
     enableResizing(area, resizeHandle);
 
-    // Enable moving
+    // Enable moving only if shopEditMode is on
     enableMoving(area);
-
-    // Update board size to fit
-    expandBoardToFit(area);
-    updateMinimap();
 
     return area;
   }
@@ -378,10 +395,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = checked;
+    li.appendChild(checkbox);
 
     const input = document.createElement('input');
     input.type = 'text';
     input.value = text;
+    li.appendChild(input);
 
     if (checked) li.classList.add('checked');
 
@@ -413,9 +432,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    li.appendChild(checkbox);
-    li.appendChild(input);
-
     return li;
   }
 
@@ -429,10 +445,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeArea) {
       activeArea.classList.add('active');
     }
+    updateMinimap();
   }
 
   // Remove an area from board and array
   function removeArea(area) {
+    if (!area || !area.parentElement) return; // safety
     board.removeChild(area);
     areas = areas.filter(a => a !== area);
     if (activeArea === area) {
@@ -443,19 +461,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Enable dragging/moving the area
   function enableMoving(area) {
-    let isMoving = false;
-    let startX, startY, origX, origY;
+    let isMoving = false, startX, startY, origX, origY;
 
     area.addEventListener('mousedown', (e) => {
-      if (!canMoveArea()) return;
+      if (!shopEditMode) return; // only when edit mode is ON
+      if (e.target.classList.contains('resize-handle') || e.target.classList.contains('btn-add-list') || e.target.classList.contains('btn-delete-area') || e.target.classList.contains('edit-btn')) return;
       if (activeArea !== area) return; // Only move active area on desktop
-
+      e.preventDefault();
       isMoving = true;
       startX = e.pageX;
       startY = e.pageY;
       origX = area.offsetLeft;
       origY = area.offsetTop;
-      e.preventDefault();
     });
 
     document.addEventListener('mousemove', (e) => {
@@ -474,11 +491,10 @@ document.addEventListener('DOMContentLoaded', () => {
       isMoving = false;
     });
 
-    // Touch support
+    // Touch support for mobile drag
     area.addEventListener('touchstart', (e) => {
-      if (!canMoveArea()) return;
+      if (!shopEditMode) return; // only when edit mode is ON
       if (activeArea !== area) return;
-
       const touch = e.touches[0];
       isMoving = true;
       startX = touch.pageX;
@@ -498,21 +514,12 @@ document.addEventListener('DOMContentLoaded', () => {
       area.style.top = newY + 'px';
       expandBoardToFit(area);
       updateMinimap();
-    }, {passive:true});
+      e.preventDefault();
+    }, {passive:false});
 
     document.addEventListener('touchend', () => {
       isMoving = false;
     });
-  }
-
-  // Determine if area can be moved according to device & active
-  function canMoveArea() {
-    const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile) {
-      return true; // on mobile/tablet, only move if active (checked above)
-    } else {
-      return true; // on desktop, always allow moving (no activeArea check in listener)
-    }
   }
 
   // Enable resizing area using the resize handle
@@ -520,6 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isResizing = false;
 
     handle.addEventListener('mousedown', (e) => {
+      if (!shopEditMode) return; // only when edit mode is ON
       e.stopPropagation();
       isResizing = true;
       e.preventDefault();
@@ -543,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Touch support
     handle.addEventListener('touchstart', (e) => {
+      if (!shopEditMode) return; // only when edit mode is ON
       e.stopPropagation();
       isResizing = true;
     }, {passive:true});
@@ -558,7 +567,8 @@ document.addEventListener('DOMContentLoaded', () => {
       area.style.height = newHeight + 'px';
       expandBoardToFit(area);
       updateMinimap();
-    }, {passive:true});
+      e.preventDefault();
+    }, {passive:false});
 
     document.addEventListener('touchend', () => {
       isResizing = false;
@@ -578,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Clear active area if click outside any area
+  // Clear active area on outside click
   board.addEventListener('mousedown', (e) => {
     if (e.target === board) {
       if (activeArea) {
@@ -657,15 +667,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load from JSON data (array of areas)
   function loadFromData(data) {
     // Clear current
-    areas.forEach(a => board.removeChild(a));
+    areas.forEach(a => { if (a.parentElement) board.removeChild(a); });
     areas = [];
     activeArea = null;
 
     data.forEach(({title, pos, size, items}) => {
-      const area = addArea(pos.left, pos.top, title, items);
-      area.style.width = size.width + 'px';
-      area.style.height = size.height + 'px';
-      expandBoardToFit(area);
+      const a = addArea(pos.left, pos.top, title, items);
+      a.style.width = size.width + 'px';
+      a.style.height = size.height + 'px';
+      expandBoardToFit(a);
     });
     updateMinimap();
   }
