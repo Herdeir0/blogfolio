@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Dynamic Map Shopping List</title>
+<title>Shopping Map</title>
 <style>
   body, html {
     margin: 0;
@@ -81,6 +81,7 @@ box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
     list-style: none;
     padding: 0;
     margin: 20px 0 60px 0;
+height: 100%;
     max-height: -webkit-fill-available;
     overflow-y: auto;
   }
@@ -95,7 +96,7 @@ box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
   }
   ul li input[type=text] {
     flex-grow: 1;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 4px;
     padding: 2px 4px;
     outline: none;
@@ -103,7 +104,7 @@ box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
     user-select: text;
   }
   ul li input[type=text]:focus {
-    border-color: #007bff;
+    border: 1px solid #007bff;
     background: #e7f1ff;
   }
   ul li.checked input[type=text] {
