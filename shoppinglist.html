@@ -37,6 +37,11 @@
     padding: 4px 8px 24px 8px;
     transition: border-color 0.3s ease;
     user-select: none;
+
+min-width: 160px;
+min-height: 260px;
+
+box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
   }
   .rect.active {
     border-color: #007bff;
@@ -67,7 +72,7 @@
   }
   .title .edit-btn {
     cursor: pointer;
-    margin-left: 6px;
+    margin-right: 32px;
     color: #007bff;
     font-weight: bold;
     user-select: none;
@@ -75,8 +80,8 @@
   ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 20px 0;
-    max-height: 100px;
+    margin: 20px 0 60px 0;
+    max-height: -webkit-fill-available;
     overflow-y: auto;
   }
   ul li {
@@ -106,12 +111,12 @@
     text-decoration: line-through;
   }
   .resize-handle {
-    width: 20px;
-    height: 20px;
+    width: 8px;
+    height: 8px;
     background: #007bff;
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 6px;
+    bottom: 6px;
     cursor: se-resize;
     border-radius: 4px;
   }
@@ -181,12 +186,12 @@
   }
   #exportImportWrapper {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    padding: 6px 12px;
+    padding: 12px 12px;
     z-index: 1001;
     display: flex;
     gap: 10px;
