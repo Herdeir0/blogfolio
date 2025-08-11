@@ -1,254 +1,739 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Map Shopping List — Single File</title>
-  <style>
-    :root{--bg:#f6f7fb;--accent:#0b74ff;--muted:#6b7280}
-    html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#111}
-    .board-wrap{height:100vh;padding:0;margin:0;box-sizing:border-box}
-    .board-area{height:100%;position:relative;overflow:auto}
-
-    /* very large scrollable board to simulate "infinite" space */
-    #board{width:8000px;height:8000px;background:#fff;position:relative;margin:0;box-shadow:inset 0 0 0 1px rgba(15,23,42,0.03);
-      background-image:linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
-                       linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
-      background-size:20px 20px;
-    }
-
-    .top-left-btn{position:absolute;top:20px;left:20px;z-index:20}
-    button{background:#111;color:#fff;border:0;padding:8px 10px;border-radius:8px;font-size:13px;cursor:pointer}
-
-    .rect{position:absolute;border:2px dashed rgba(11,20,50,0.12);background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,255,0.95));border-radius:8px;box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column}
-    .rect .title{background:rgba(250,250,255,0.95);padding:6px 8px;font-weight:600;border-bottom:1px solid rgba(11,20,50,0.03);display:flex;align-items:center;justify-content:space-between;gap:6px}
-    .rect .title .label{flex:1;cursor:default}
-    .rect .title input{flex:1;border:1px solid #e2e8f0;padding:4px;border-radius:4px}
-    .rect .title .edit-btn{cursor:pointer;font-size:14px;padding:4px}
-    .rect .delete-btn{width:20px;height:20px;background:red;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold;cursor:pointer;font-size:14px;line-height:14px}
-    .rect .content{padding:8px;flex:1;overflow:auto}
-    .resize-handle{width:12px;height:12px;background:var(--accent);position:absolute;right:6px;bottom:6px;border-radius:3px;cursor:se-resize;z-index:12}
-    .selected{box-shadow:0 6px 18px rgba(11,20,50,0.12);border-style:solid;border-color:var(--accent)}
-
-    .list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
-    .list li{display:flex;gap:8px;align-items:center}
-    .list li input[type="text"]{flex:1;border:1px solid #ccc;border-radius:4px;padding:4px;background:#fff}
-    .add-list-btn{margin:6px;padding:6px;font-size:12px;background:var(--accent);border-radius:6px}
-
-    /* Make interactive elements visually on top */
-    .rect .title,.rect .delete-btn,.rect .edit-btn,.rect .add-list-btn{z-index:10}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dynamic Map Shopping List</title>
+<style>
+  body, html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: sans-serif;
+  }
+  .board-area {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: #f6f7fb;
+    position: relative;
+  }
+  #board {
+    background: white;
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .rect {
+    position: absolute;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 4px 8px 24px 8px;
+    transition: border-color 0.3s ease;
+    user-select: none;
+  }
+  .rect.active {
+    border-color: #007bff;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    user-select: text;
+  }
+  .title span {
+    flex-grow: 1;
+    font-weight: bold;
+  }
+  .title input[type=text] {
+    font-weight: bold;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 4px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .title input[type=text]:focus {
+    border-color: #007bff;
+    background: #e7f1ff;
+  }
+  .title .edit-btn {
+    cursor: pointer;
+    margin-left: 6px;
+    color: #007bff;
+    font-weight: bold;
+    user-select: none;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+  ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  ul li input[type=checkbox] {
+    margin-right: 6px;
+    cursor: pointer;
+  }
+  ul li input[type=text] {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 4px;
+    outline: none;
+    background: white;
+    user-select: text;
+  }
+  ul li input[type=text]:focus {
+    border-color: #007bff;
+    background: #e7f1ff;
+  }
+  ul li.checked input[type=text] {
+    color: #999;
+    text-decoration: line-through;
+  }
+  .resize-handle {
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: se-resize;
+    border-radius: 4px;
+  }
+  .btn-add-list {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    width: 24px;
+    height: 24px;
+    background: #007bff;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  }
+  .btn-delete-area {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    background: red;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  }
+  #btnNew {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    background: #007bff;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 52px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  }
+  #minimap {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 160px;
+    height: 120px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  #exportImportWrapper {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    padding: 6px 12px;
+    z-index: 1001;
+    display: flex;
+    gap: 10px;
+  }
+  button.export-btn, button.import-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+  button.export-btn:hover, button.import-btn:hover {
+    background: #0056b3;
+  }
+</style>
 </head>
 <body>
-  <div class="board-wrap">
-    <div class="board-area">
-      <div id="board">
-        <button class="top-left-btn" id="btnNew">+ Add Area</button>
-      </div>
-    </div>
+<div class="board-area">
+  <div id="board">
+    <button id="btnNew" title="Add Area">+</button>
   </div>
+</div>
 
-  <template id="rect-template">
-    <div class="rect">
-      <div class="title">
-        <span class="label">Area</span>
-        <span class="edit-btn" title="Edit name">✏️</span>
-        <div class="delete-btn" title="Delete">×</div>
-      </div>
-      <div class="content"></div>
-      <button class="add-list-btn">+ Add list</button>
-      <div class="resize-handle" title="Resize"></div>
-    </div>
-  </template>
+<div id="exportImportWrapper">
+  <button class="export-btn" title="Export Map">Export</button>
+  <button class="import-btn" title="Import Map">Import</button>
+  <input type="file" id="importFile" style="display:none" accept="application/json" />
+</div>
 
-  <script>
-    const board = document.getElementById('board');
-    const tpl = document.getElementById('rect-template');
-    let state = {areas:[], selected:null};
-    const uid = ()=>Math.random().toString(36).slice(2,9);
-    const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
-    const snap20 = v => Math.round(v/20)*20;
+<canvas id="minimap" width="160" height="120"></canvas>
 
-    function getContainer(){ return board.parentElement; }
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const board = document.getElementById('board');
+  const btnNew = document.getElementById('btnNew');
+  const btnExport = document.querySelector('.export-btn');
+  const btnImport = document.querySelector('.import-btn');
+  const importFile = document.getElementById('importFile');
+  const minimapCanvas = document.getElementById('minimap');
+  const ctx = minimapCanvas.getContext('2d');
 
-    function createArea(x, y, w=240, h=160, title='Area'){
-      const container = getContainer();
-      const cx = (typeof x === 'number') ? x : container.scrollLeft + Math.max((container.clientWidth - w)/2, 0);
-      const cy = (typeof y === 'number') ? y : container.scrollTop + Math.max((container.clientHeight - h)/2, 0);
-      const id = uid();
-      const area = {id, x: snap20(cx), y: snap20(cy), w: snap20(w), h: snap20(h), title, items: []};
-      state.areas.push(area);
-      renderArea(area);
-      selectArea(id);
-      return area;
-    }
+  let areas = [];
+  let activeArea = null;
 
-    function renderAll(){ board.querySelectorAll('.rect').forEach(n=>n.remove()); state.areas.forEach(renderArea); }
+  // Utility: snap to 20x20 grid
+  function snapToGrid(value, gridSize = 20) {
+    return Math.round(value / gridSize) * gridSize;
+  }
 
-    function renderArea(area){
-      const old = board.querySelector(`[data-id="${area.id}"]`);
-      if(old) old.remove();
+  // Add a new area
+  function addArea(x = 20, y = 20, title = 'Area', items = []) {
+    const area = document.createElement('div');
+    area.className = 'rect';
+    area.style.left = snapToGrid(x) + 'px';
+    area.style.top = snapToGrid(y) + 'px';
+    area.style.width = '120px';
+    area.style.height = '80px';
+    area.setAttribute('tabindex', 0);
 
-      const node = tpl.content.firstElementChild.cloneNode(true);
-      node.style.left = area.x + 'px';
-      node.style.top = area.y + 'px';
-      node.style.width = area.w + 'px';
-      node.style.height = area.h + 'px';
-      node.dataset.id = area.id;
+    // Title bar with editable span + pencil icon
+    const titleBar = document.createElement('div');
+    titleBar.className = 'title';
 
-      // title
-      const label = node.querySelector('.label');
-      label.textContent = area.title;
+    const titleSpan = document.createElement('span');
+    titleSpan.textContent = title;
+    titleBar.appendChild(titleSpan);
 
-      const editBtn = node.querySelector('.edit-btn');
-      editBtn.addEventListener('click', (e)=>{ e.stopPropagation(); startEditTitle(area, node); });
+    const editBtn = document.createElement('div');
+    editBtn.className = 'edit-btn';
+    editBtn.textContent = '✎';
+    titleBar.appendChild(editBtn);
 
-      const deleteBtn = node.querySelector('.delete-btn');
-      deleteBtn.addEventListener('click', (e)=>{ e.stopPropagation(); state.areas = state.areas.filter(a => a.id !== area.id); if(state.selected === area.id) state.selected = null; renderAll(); });
+    // Editable input (hidden initially)
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.value = title;
+    titleInput.style.display = 'none';
+    titleBar.appendChild(titleInput);
 
-      // dragging (pointer + touch fallback)
-      node.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('button, input, textarea, .edit-btn, .delete-btn, .add-list-btn')) return;
-        if (e.target.classList.contains('resize-handle') || e.button !== 0) return;
-        selectArea(area.id);
-        startDragPointer(node, area, e);
-      });
+    area.appendChild(titleBar);
 
-      node.addEventListener('touchstart', (e)=>{
-        if (e.target.closest('button, input, textarea, .edit-btn, .delete-btn, .add-list-btn')) return;
-        if (e.target.classList.contains('resize-handle')) return;
-        if (e.touches && e.touches.length>1) return;
-        selectArea(area.id);
-        startDragTouch(node, area, e);
-      }, {passive:false});
+    // List container
+    const ul = document.createElement('ul');
+    area.appendChild(ul);
 
-      // resize (pointer + touch)
-      const handle = node.querySelector('.resize-handle');
-      handle.addEventListener('pointerdown', (e)=>{ e.stopPropagation(); startResizePointer(node, area, e); });
-      handle.addEventListener('touchstart', (e)=>{ e.stopPropagation(); if(e.touches && e.touches.length>1) return; startResizeTouch(node, area, e); }, {passive:false});
-
-      // content / lists
-      const content = node.querySelector('.content');
-      content.innerHTML = '';
-      const ul = document.createElement('ul'); ul.className = 'list';
-      (area.items || []).forEach((it, i)=> ul.appendChild(makeListItem(area, i)));
-      content.appendChild(ul);
-
-      // add-list button
-      const addBtn = node.querySelector('.add-list-btn');
-      addBtn.addEventListener('click', (e)=>{ e.stopPropagation(); area.items.push({text:'', checked:false}); renderArea(area); });
-
-      board.appendChild(node);
-      refreshSelectionStyles();
-    }
-
-    function startEditTitle(area, node){
-      const titleEl = node.querySelector('.title');
-      const oldLabel = titleEl.querySelector('.label');
-      const input = document.createElement('input');
-      input.value = area.title; input.autofocus = true;
-      input.addEventListener('blur', finish);
-      input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') finish(); });
-      titleEl.insertBefore(input, oldLabel);
-      titleEl.removeChild(oldLabel);
-      input.select();
-      function finish(){ area.title = input.value || 'Area'; renderArea(area); }
-    }
-
-    function makeListItem(area, index){
-      const item = area.items[index];
-      const li = document.createElement('li');
-      const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!item.checked; cb.addEventListener('change', ()=> item.checked = cb.checked);
-      const txt = document.createElement('input'); txt.type = 'text'; txt.value = item.text || ''; txt.addEventListener('input', ()=> item.text = txt.value);
-      li.appendChild(cb); li.appendChild(txt);
-      return li;
-    }
-
-    function selectArea(id){ state.selected = id; refreshSelectionStyles(); }
-    function refreshSelectionStyles(){ board.querySelectorAll('.rect').forEach(el => el.classList.toggle('selected', el.dataset.id === state.selected)); }
-
-    // pointer-based drag (works on desktop and modern mobile browsers)
-    function startDragPointer(node, area, e){
-      e.preventDefault();
-      try{ node.setPointerCapture(e.pointerId); }catch(err){}
-      const startX = e.clientX, startY = e.clientY, baseX = area.x, baseY = area.y;
-      function move(ev){
-        const dx = snap20(baseX + (ev.clientX - startX));
-        const dy = snap20(baseY + (ev.clientY - startY));
-        area.x = clamp(dx, 0, board.clientWidth - area.w);
-        area.y = clamp(dy, 0, board.clientHeight - area.h);
-        node.style.left = area.x + 'px'; node.style.top = area.y + 'px';
-      }
-      function up(ev){
-        try{ node.releasePointerCapture(e.pointerId); }catch(err){}
-        document.removeEventListener('pointermove', move);
-        document.removeEventListener('pointerup', up);
-      }
-      document.addEventListener('pointermove', move);
-      document.addEventListener('pointerup', up);
-    }
-
-    // touch-based drag fallback for older browsers that may not support pointer events
-    function startDragTouch(node, area, e){
-      e.preventDefault();
-      const touch = e.touches[0];
-      const startX = touch.clientX, startY = touch.clientY, baseX = area.x, baseY = area.y;
-      function move(ev){ ev.preventDefault(); const t = ev.touches[0]; const dx = snap20(baseX + (t.clientX - startX)); const dy = snap20(baseY + (t.clientY - startY)); area.x = clamp(dx, 0, board.clientWidth - area.w); area.y = clamp(dy, 0, board.clientHeight - area.h); node.style.left = area.x + 'px'; node.style.top = area.y + 'px'; }
-      function up(ev){ document.removeEventListener('touchmove', move, {passive:false}); document.removeEventListener('touchend', up); }
-      document.addEventListener('touchmove', move, {passive:false});
-      document.addEventListener('touchend', up);
-    }
-
-    // pointer-based resize
-    function startResizePointer(node, area, e){
-      e.preventDefault();
-      try{ node.setPointerCapture(e.pointerId); }catch(err){}
-      const startX = e.clientX, startY = e.clientY, baseW = area.w, baseH = area.h;
-      function move(ev){
-        const nw = snap20(baseW + (ev.clientX - startX));
-        const nh = snap20(baseH + (ev.clientY - startY));
-        area.w = clamp(nw, 80, board.clientWidth - area.x);
-        area.h = clamp(nh, 60, board.clientHeight - area.y);
-        node.style.width = area.w + 'px'; node.style.height = area.h + 'px';
-      }
-      function up(ev){
-        try{ node.releasePointerCapture(e.pointerId); }catch(err){}
-        document.removeEventListener('pointermove', move);
-        document.removeEventListener('pointerup', up);
-      }
-      document.addEventListener('pointermove', move);
-      document.addEventListener('pointerup', up);
-    }
-
-    // touch-based resize fallback
-    function startResizeTouch(node, area, e){
-      e.preventDefault();
-      const touch = e.touches[0];
-      const startX = touch.clientX, startY = touch.clientY, baseW = area.w, baseH = area.h;
-      function move(ev){ ev.preventDefault(); const t = ev.touches[0]; const nw = snap20(baseW + (t.clientX - startX)); const nh = snap20(baseH + (t.clientY - startY)); area.w = clamp(nw, 80, board.clientWidth - area.x); area.h = clamp(nh, 60, board.clientHeight - area.y); node.style.width = area.w + 'px'; node.style.height = area.h + 'px'; }
-      function up(ev){ document.removeEventListener('touchmove', move, {passive:false}); document.removeEventListener('touchend', up); }
-      document.addEventListener('touchmove', move, {passive:false});
-      document.addEventListener('touchend', up);
-    }
-
-    // clicking empty board deselects
-    board.addEventListener('pointerdown', (e)=>{ if(e.target === board) { state.selected = null; refreshSelectionStyles(); } });
-
-    // double click to add area at mouse location
-    board.addEventListener('dblclick', (e)=>{
-      const rect = board.getBoundingClientRect();
-      const container = getContainer();
-      const x = container.scrollLeft + (e.clientX - rect.left);
-      const y = container.scrollTop + (e.clientY - rect.top);
-      createArea(snap20(x), snap20(y));
+    // Add items if any
+    items.forEach(({text, checked}) => {
+      const li = createListItem(text, checked);
+      ul.appendChild(li);
     });
 
-    // add area button inside board
-    document.getElementById('btnNew').addEventListener('click', (e)=>{ e.stopPropagation(); createArea(); });
+    // Add List button (blue circle with +)
+    const btnAddList = document.createElement('div');
+    btnAddList.className = 'btn-add-list';
+    btnAddList.textContent = '+';
+    area.appendChild(btnAddList);
 
-    // initial demo areas
-    function init(){ createArea(80,80,280,180,'Produce'); createArea(420,80,260,180,'Dairy'); }
-    init();
-  </script>
+    // Delete area button (red circle with ×)
+    const btnDelete = document.createElement('div');
+    btnDelete.className = 'btn-delete-area';
+    btnDelete.textContent = '×';
+    area.appendChild(btnDelete);
+
+    // Resize handle
+    const resizeHandle = document.createElement('div');
+    resizeHandle.className = 'resize-handle';
+    area.appendChild(resizeHandle);
+
+    board.appendChild(area);
+    areas.push(area);
+
+    // Activate area on click
+    area.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      setActiveArea(area);
+    });
+
+    // Activate on touch start (mobile)
+    area.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+      setActiveArea(area);
+    }, {passive:true});
+
+    // Title editing toggles
+    editBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      titleSpan.style.display = 'none';
+      editBtn.style.display = 'none';
+      titleInput.style.display = 'inline-block';
+      titleInput.focus();
+      titleInput.select();
+    });
+
+    titleInput.addEventListener('blur', () => {
+      titleSpan.textContent = titleInput.value.trim() || 'Area';
+      titleSpan.style.display = 'inline';
+      editBtn.style.display = 'inline-block';
+      titleInput.style.display = 'none';
+    });
+
+    titleInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        titleInput.blur();
+      }
+    });
+
+    // Add list item on Add List button click
+    btnAddList.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const li = createListItem('', false);
+      ul.appendChild(li);
+      li.querySelector('input[type=text]').focus();
+      updateMinimap();
+    });
+
+    // Delete area
+    btnDelete.addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeArea(area);
+    });
+
+    // Enable resizing only if area is active
+    enableResizing(area, resizeHandle);
+
+    // Enable moving
+    enableMoving(area);
+
+    // Update board size to fit
+    expandBoardToFit(area);
+    updateMinimap();
+
+    return area;
+  }
+
+  // Create a list item <li> with checkbox + editable text input
+  function createListItem(text = '', checked = false) {
+    const li = document.createElement('li');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = checked;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = text;
+
+    if (checked) li.classList.add('checked');
+
+    // Toggle checked style on checkbox change
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        li.classList.add('checked');
+      } else {
+        li.classList.remove('checked');
+      }
+      updateMinimap();
+    });
+
+    // Focus input on click for re-edit
+    input.addEventListener('click', (e) => {
+      e.stopPropagation();
+      input.focus();
+    });
+
+    // Enter creates new list item below
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const ul = li.parentElement;
+        const newLi = createListItem('', false);
+        ul.insertBefore(newLi, li.nextSibling);
+        newLi.querySelector('input[type=text]').focus();
+        updateMinimap();
+      }
+    });
+
+    li.appendChild(checkbox);
+    li.appendChild(input);
+
+    return li;
+  }
+
+  // Set active area with visual border and unselect others
+  function setActiveArea(area) {
+    if (activeArea === area) return;
+    if (activeArea) {
+      activeArea.classList.remove('active');
+    }
+    activeArea = area;
+    if (activeArea) {
+      activeArea.classList.add('active');
+    }
+  }
+
+  // Remove an area from board and array
+  function removeArea(area) {
+    board.removeChild(area);
+    areas = areas.filter(a => a !== area);
+    if (activeArea === area) {
+      activeArea = null;
+    }
+    updateMinimap();
+  }
+
+  // Enable dragging/moving the area
+  function enableMoving(area) {
+    let isMoving = false;
+    let startX, startY, origX, origY;
+
+    area.addEventListener('mousedown', (e) => {
+      if (!canMoveArea()) return;
+      if (activeArea !== area) return; // Only move active area on desktop
+
+      isMoving = true;
+      startX = e.pageX;
+      startY = e.pageY;
+      origX = area.offsetLeft;
+      origY = area.offsetTop;
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isMoving) return;
+      let newX = origX + (e.pageX - startX);
+      let newY = origY + (e.pageY - startY);
+      newX = Math.max(0, snapToGrid(newX));
+      newY = Math.max(0, snapToGrid(newY));
+      area.style.left = newX + 'px';
+      area.style.top = newY + 'px';
+      expandBoardToFit(area);
+      updateMinimap();
+    });
+
+    document.addEventListener('mouseup', () => {
+      isMoving = false;
+    });
+
+    // Touch support
+    area.addEventListener('touchstart', (e) => {
+      if (!canMoveArea()) return;
+      if (activeArea !== area) return;
+
+      const touch = e.touches[0];
+      isMoving = true;
+      startX = touch.pageX;
+      startY = touch.pageY;
+      origX = area.offsetLeft;
+      origY = area.offsetTop;
+    }, {passive:true});
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isMoving) return;
+      const touch = e.touches[0];
+      let newX = origX + (touch.pageX - startX);
+      let newY = origY + (touch.pageY - startY);
+      newX = Math.max(0, snapToGrid(newX));
+      newY = Math.max(0, snapToGrid(newY));
+      area.style.left = newX + 'px';
+      area.style.top = newY + 'px';
+      expandBoardToFit(area);
+      updateMinimap();
+    }, {passive:true});
+
+    document.addEventListener('touchend', () => {
+      isMoving = false;
+    });
+  }
+
+  // Determine if area can be moved according to device & active
+  function canMoveArea() {
+    const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      return true; // on mobile/tablet, only move if active (checked above)
+    } else {
+      return true; // on desktop, always allow moving (no activeArea check in listener)
+    }
+  }
+
+  // Enable resizing area using the resize handle
+  function enableResizing(area, handle) {
+    let isResizing = false;
+
+    handle.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      isResizing = true;
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isResizing) return;
+      let newWidth = e.pageX - area.offsetLeft + board.scrollLeft;
+      let newHeight = e.pageY - area.offsetTop + board.scrollTop;
+      newWidth = Math.max(40, snapToGrid(newWidth));
+      newHeight = Math.max(40, snapToGrid(newHeight));
+      area.style.width = newWidth + 'px';
+      area.style.height = newHeight + 'px';
+      expandBoardToFit(area);
+      updateMinimap();
+    });
+
+    document.addEventListener('mouseup', () => {
+      isResizing = false;
+    });
+
+    // Touch support
+    handle.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+      isResizing = true;
+    }, {passive:true});
+
+    document.addEventListener('touchmove', (e) => {
+      if (!isResizing) return;
+      const touch = e.touches[0];
+      let newWidth = touch.pageX - area.offsetLeft + board.scrollLeft;
+      let newHeight = touch.pageY - area.offsetTop + board.scrollTop;
+      newWidth = Math.max(40, snapToGrid(newWidth));
+      newHeight = Math.max(40, snapToGrid(newHeight));
+      area.style.width = newWidth + 'px';
+      area.style.height = newHeight + 'px';
+      expandBoardToFit(area);
+      updateMinimap();
+    }, {passive:true});
+
+    document.addEventListener('touchend', () => {
+      isResizing = false;
+    });
+  }
+
+  // Expand board min width/height to fit an area fully
+  function expandBoardToFit(area) {
+    const right = area.offsetLeft + area.offsetWidth;
+    const bottom = area.offsetTop + area.offsetHeight;
+
+    if (board.scrollWidth < right) {
+      board.style.minWidth = right + 40 + 'px';
+    }
+    if (board.scrollHeight < bottom) {
+      board.style.minHeight = bottom + 40 + 'px';
+    }
+  }
+
+  // Clear active area if click outside any area
+  board.addEventListener('mousedown', (e) => {
+    if (e.target === board) {
+      if (activeArea) {
+        activeArea.classList.remove('active');
+        activeArea = null;
+      }
+    }
+  });
+
+  board.addEventListener('touchstart', (e) => {
+    if (e.target === board) {
+      if (activeArea) {
+        activeArea.classList.remove('active');
+        activeArea = null;
+      }
+    }
+  }, {passive:true});
+
+  // Button new area
+  btnNew.addEventListener('click', () => {
+    addArea(20, 20, 'Area', []);
+  });
+
+  // Export button - downloads JSON file
+  btnExport.addEventListener('click', () => {
+    const data = areas.map(area => {
+      const title = area.querySelector('.title span')?.textContent || 'Area';
+      const pos = { left: area.offsetLeft, top: area.offsetTop };
+      const size = { width: area.offsetWidth, height: area.offsetHeight };
+      const items = [...area.querySelectorAll('ul li')].map(li => {
+        return {
+          text: li.querySelector('input[type=text]').value,
+          checked: li.querySelector('input[type=checkbox]').checked
+        };
+      });
+      return { title, pos, size, items };
+    });
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'shopping_map.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
+  });
+
+  // Import button triggers file input
+  btnImport.addEventListener('click', () => {
+    importFile.click();
+  });
+
+  // On file selected for import
+  importFile.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target.result);
+        loadFromData(json);
+      } catch(err) {
+        alert('Invalid JSON file.');
+      }
+    };
+    reader.readAsText(file);
+    // Reset input to allow same file again if needed
+    importFile.value = '';
+  });
+
+  // Load from JSON data (array of areas)
+  function loadFromData(data) {
+    // Clear current
+    areas.forEach(a => board.removeChild(a));
+    areas = [];
+    activeArea = null;
+
+    data.forEach(({title, pos, size, items}) => {
+      const area = addArea(pos.left, pos.top, title, items);
+      area.style.width = size.width + 'px';
+      area.style.height = size.height + 'px';
+      expandBoardToFit(area);
+    });
+    updateMinimap();
+  }
+
+  // Minimap drawing function
+  function updateMinimap() {
+    const cw = minimapCanvas.width;
+    const ch = minimapCanvas.height;
+    ctx.clearRect(0, 0, cw, ch);
+
+    // Get board bounding box
+    const boardRect = board.getBoundingClientRect();
+    const boardWidth = Math.max(board.scrollWidth, boardRect.width);
+    const boardHeight = Math.max(board.scrollHeight, boardRect.height);
+
+    // Calculate scale to fit board inside minimap
+    const scaleX = cw / boardWidth;
+    const scaleY = ch / boardHeight;
+    const scale = Math.min(scaleX, scaleY);
+
+    // Draw background grid on minimap
+    ctx.fillStyle = '#f6f7fb';
+    ctx.fillRect(0, 0, cw, ch);
+
+    ctx.strokeStyle = '#ddd';
+    ctx.lineWidth = 0.5;
+    const gridSize = 20 * scale;
+    for (let x = 0; x <= cw; x += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, ch);
+      ctx.stroke();
+    }
+    for (let y = 0; y <= ch; y += gridSize) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(cw, y);
+      ctx.stroke();
+    }
+
+    // Draw all areas scaled down
+    areas.forEach(area => {
+      const x = area.offsetLeft * scale;
+      const y = area.offsetTop * scale;
+      const w = area.offsetWidth * scale;
+      const h = area.offsetHeight * scale;
+
+      ctx.fillStyle = 'rgba(0,123,255,0.3)';
+      ctx.strokeStyle = 'rgba(0,123,255,0.7)';
+      ctx.lineWidth = 1;
+
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeRect(x, y, w, h);
+
+      // Draw active area with darker border
+      if (area === activeArea) {
+        ctx.strokeStyle = '#004085';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x+2, y+2, w-4, h-4);
+      }
+    });
+  }
+
+  // Update minimap on scroll and resize
+  document.querySelector('.board-area').addEventListener('scroll', updateMinimap);
+  window.addEventListener('resize', updateMinimap);
+
+  // Start with one area
+  addArea(40, 40, 'Area', []);
+
+  // Initial minimap draw
+  updateMinimap();
+
+});
+</script>
 </body>
 </html>
