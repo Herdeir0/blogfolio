@@ -40,7 +40,8 @@ button {
 }
 
 .btn-secundary {
-  border: none
+  border: none;
+  padding: var(--m) var(--xs) !important;
 }
 
 button:hover {
@@ -62,6 +63,11 @@ button:hover {
 button:active {
   background-color: var(--primary);
   color: var(--cloud);
+}
+
+.btn-secundary:active {
+  background-color: var(--cloud);
+  color: var(--primary-active);
 }
 
 body {
@@ -268,7 +274,7 @@ catalog {
 }
 
 catalog.articles {
-  grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+  grid-template-columns: calc(33% - 8px) calc(33% - 8px) calc(33% - 8px);
 }
 
 catalog a {
@@ -308,7 +314,7 @@ catalog-item {
 
 catalog.articles catalog-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   
   width: 100%;
   height: fit-content;
@@ -330,13 +336,13 @@ catalog.articles catalog-item {
 }
 
 catalog.articles catalog-item catalog-item-img {
-  display: block;
+  display: cover;
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 190px;
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  aspect-ratio: 3/1;
   border-radius: 8px;
 }
 
@@ -351,7 +357,6 @@ catalog.articles catalog-item div {
 }
 
 catalog.articles catalog-item catalog-item-title {
-  min-height: auto;
   margin-bottom: 0px;
 }
 
@@ -386,7 +391,6 @@ catalog-item-img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  max-width: 770px;
   height: 150px;
   border-radius: 8px;
 /* 
@@ -399,7 +403,7 @@ catalog-item-title {
   font-weight: 500;
   line-height: 140%;
 
-  min-height: 120px;
+  min-height: 80px;
 }
 
 catalog-item div {
@@ -649,10 +653,36 @@ cv-tags {
   font-size: var(--text);
   font-weight: 400;
   line-height: normal;
-  padding: var(--m) var(--xl);
+  padding: var(--s) var(--m);
 
   margin-bottom: var(--xs);
 
+  color: var(--primary);
+
   border: var(--primary) dashed 2px;
+  border-radius: var(--s);
+}
+
+/* __ Digital Archive ________________________________________________________________________________________________________________________________ */
+
+.masonry-column {
+  display: block;
+  grid-column: span 4;
+  gap: var(--xs);
+  width: 100%;
+  height: auto;
+}
+
+.masonry {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: var(--xs);
+}
+
+.masonry img {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: var(--xs);
 }
