@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>David Herdeiro</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/text-and-variables.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+  <link rel="stylesheet" href="css/tablet.css" />
+
+  <link rel="icon" type="image/x-icon" href="img/svg/seagull-modern.svg" />
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+  </style>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vni2zuup2d");
+  </script>
+</head>
+
+<body>
+  <!-- The proletarians have nothing to lose but their chains. They have a world to win. Working Men of All Countries, Unite! -->
+  <navbar>
+    <a>
+      <logotype><img src="img/svg/seagull-modern-positive.svg" alt="logotype" />
+        <t>David Herdeiro</t>
+      </logotype>
+    </a>
+    <menu>
+      <a id="buttonDesktop" href="digital-archive.html"><button class="btn-secundary">Digital archive</button></a>
+      <a id="buttonMobile" href="digital-archive.html"><button class="btn-secundary">Archive</button></a>
+      <a id="buttonDesktop" href="cv.html"><button class="btn-secundary">Curriculum</button></a>
+      <a id="buttonMobile" href="cv.html"><button class="btn-secundary">My CV</button></a>
+      <a id="buttonDesktop" href="contact.html"><button>Let's talk</button></a>
+      <a id="buttonMobile" href="contact.html"><button>Chat</button></a>
+    </menu>
+  </navbar>
+  <content>
+    <hello-message>Oh, hello there, fellow designer friend.</hello-message>
+    <summary>
+      My name is David and I’m a Communication Designer by education,
+      and a Generalist by heart.<br />
+      <br />
+      I've worked previously as the Lead Brand and Communications Designer at
+      <a href="https://turbinekreuzberg.com/en"><s>Turbine Kreuzberg</s></a>, a Berlin-based IT Agency. Currently I'm working as Webdesigner for the portuguese fintech <a href="https://doutorfinancas.pt"><s>Doutor Finanças, Lda</s></a>.<br>
+      <br>
+      <a id="buttonDesktop" href="cv.html"><button>Check my Curriculum Vitae</button></a>
+      <a id="buttonMobile" href="cv.html"><button>Check my CV</button></a>
+    </summary>
+  </content>
+  <content id="article">
+    <catalog-title>
+      <h2>Articles</h2>
+    </catalog-title>
+    <catalog-selection>
+      <button onclick="filterElementsArticle('article-all')">All</button>
+      <button onclick="filterElementsArticle('article-community')">Community</button>
+      <button onclick="filterElementsArticle('article-design')">Design</button>
+      <button onclick="filterElementsArticle('article-ethics')">Ethics</button>
+      <button onclick="filterElementsArticle('article-genai')">Gen AI</button>
+      <button onclick="filterElementsArticle('article-organization')">Organization</button>
+      <button onclick="filterElementsArticle('article-software')">Software</button>
+      <button onclick="filterElementsArticle('article-teamwork')">Teamwork</button>
+      <button onclick="filterElementsArticle('article-video')">Video</button>
+    </catalog-selection>
+    <catalog class="articles">
+      <!----------------------------------------------------------------------------------------------Image Cryptography-->
+      <a class="article-exploration a-show" style="pointer-events: none; opacity: 0.3;">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/four-years-of-in-house-design/creativity-01-desktop.jpg')"/></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>Writing in Progress</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Thought Exercise: Exploring Image Cryptography</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Exploration</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Canva, DIY Culture and the Democratization of Design-->
+      <a class="article-software article-ethics a-show" href="articles/canva-diy-culture-democratization-of-design.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('/img/canva-diy-culture-democratization-of-design/canva-logo.jpg')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2025 Nov. 21</div>
+                <div>4
+                   min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Canva, DIY Culture and the Democratization of Design</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Software</catalog-item-tag>
+              <catalog-item-tag>Ethics</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Software Bending-->
+      <a class="article-software a-show" href="articles/software-bending.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/software-bending/software-bending-cover.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2025 Aug. 08</div>
+                <div>2 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Software Bending</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Software</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Anatomy of a Testimonial Video-->
+      <a class="article-video a-show" href="articles/anatomy-of-a-testimonial-video.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/anatomy-of-a-testimonial-video/image-03.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2025 Jan. 10</div>
+                <div>3 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Anatomy of a Testimonial Video</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Video</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Optimize your workflow-->
+      <a class="article-organization a-show" href="articles/optimize-your-workflow-get-parallel.html"">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/get-parallel/optimize-your-workflow-photo-by-sebastien-bonneval.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2025 Jan. 02</div>
+                <div>3 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Optimize Your Workflow: Get Parallel</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Organization</catalog-item-tag>
+            </tags>
+          </div>
+      </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Notion databases-->
+      <a class=" article-organization article-software a-show" href="articles/think-your-notion-databases-ahead.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/notion-databases/notion-logo.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2024 Dec. 27</div>
+                <div>6 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Think Your Notion Databases Ahead</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Organization</catalog-item-tag>
+              <catalog-item-tag>Software</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------AI or not AI-->
+      <a class="article-ethics article-genai a-show" href="articles/creatives-to-ai-or-not-to-ai.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/to-ai-or-not/genai-equals-power.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2024 Oct. 24</div>
+                <div>12 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Creatives, to AI or Not to AI?</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Ethics</catalog-item-tag>
+              <catalog-item-tag>Gen AI</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------Team Up-->
+      <a class="article-teamwork a-show" href="articles/team-up-a-personal-exprience.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/team-up/fist-bump-image-by-cottonbro-cg-studio.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2023 Nov. 23</div>
+                <div>4 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Team Up: A Personal Experience</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Teamwork</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------They dont need a designer-->
+      <a class="article-ethics a-show" href="articles/hot-take-they-probably-dont-need-a-designer.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/they-probably-dont-need-a-designer/person-thinking-photo-by-christina-morilo.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2023 Sep. 24</div>
+                <div>5 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Hot take: They (Probably) Don't Need a Designer</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Ethics</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------They dont need a designer-->
+      <a class="article-ethics article-community a-show" href="articles/community-events-a-guideline.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/community-events/events-photo-by-dialogos-de-design.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2023 May 23</div>
+                <div>2 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>Community Events: A Guideline</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Ethics</catalog-item-tag>
+              <catalog-item-tag>Community</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+      <!----------------------------------------------------------------------------------------------you dont need colors-->
+      <a class="article-design a-show" href="articles/you-dont-need-colors-to-communicate.html">
+        <catalog-item>
+          <catalog-item-img style="background-image: url('img/colors-to-communicate/blue-circle-on-dark-background.webp')" /></catalog-item-img>
+          <div>
+            <div>
+              <catalog-item-date-and-time>
+                <div>2023 Jan. 10</div>
+                <div>3 min. read</div>
+              </catalog-item-date-and-time>
+              <catalog-item-title>You Don't Need Colors to Communicate</catalog-item-title>
+            </div>
+            <tags>
+              <catalog-item-tag>Design</catalog-item-tag>
+            </tags>
+          </div>
+        </catalog-item>
+      </a>
+    </catalog>
+  </content>
+  <footer>
+    © 2025 David Herdeiro. All Rights Reserved.<br />
+  </footer>
+
+  <script src="js/catalog-filter.js"></script>
+</body>
+
+</html>
